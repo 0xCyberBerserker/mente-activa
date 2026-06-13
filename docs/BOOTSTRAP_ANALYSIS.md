@@ -1,89 +1,103 @@
 # Bootstrap Analysis
 
-## Current Status
+## Español
 
-- Local repository synchronized with `origin/main`.
-- Active branch: `main`.
-- Remote: `https://github.com/0xCyberBerserker/mente-activa.git`.
-- Skills installed locally:
+### Estado actual
+
+- Repositorio local sincronizado con `origin/main`
+- Rama activa: `main`
+- Remote: `https://github.com/0xCyberBerserker/mente-activa.git`
+- Skills instaladas localmente:
   - `~/.codex/skills/godot`
   - `~/.codex/skills/godot-ui`
 
-## Project Shape
+### Forma del proyecto
 
-- Engine: Godot `4.6` declared in [`project.godot`](/home/aesir/Documentos/mente-activa/project.godot).
-- Main scene resolved to [`Escena/control.tscn`](/home/aesir/Documentos/mente-activa/Escena/control.tscn).
-- Code style:
-  - GDScript gameplay scripts in [`script/`](/home/aesir/Documentos/mente-activa/script)
-  - scenes in [`Escena/`](/home/aesir/Documentos/mente-activa/Escena)
-  - bundled GDExtension addon in [`addons/orchestrator/`](/home/aesir/Documentos/mente-activa/addons/orchestrator)
-- Runtime model is mixed:
-  - `.gd` scripts for minigame logic
-  - `.torch` Orchestrator scripts for menu flow
-- Current gameplay scope appears to be a menu plus two minigames:
-  - `MatchDayAndDay`
-  - `CompletaelRefrán`
+- Motor: Godot `4.6` declarado en [`project.godot`](/home/aesir/Documentos/mente-activa/project.godot)
+- Escena principal resuelta a [`Escena/control.tscn`](/home/aesir/Documentos/mente-activa/Escena/control.tscn)
+- Modelo mixto:
+  - scripts `.gd` para lógica de minijuegos
+  - scripts `.torch` de Orchestrator para flujo de menús
+- Estructura base:
+  - [`Escena/`](/home/aesir/Documentos/mente-activa/Escena)
+  - [`script/`](/home/aesir/Documentos/mente-activa/script)
+  - [`addons/orchestrator/`](/home/aesir/Documentos/mente-activa/addons/orchestrator)
 
-## Export Status
+### Estado de export
 
-- Existing presets in [`export_presets.cfg`](/home/aesir/Documentos/mente-activa/export_presets.cfg):
+- Presets existentes en [`export_presets.cfg`](/home/aesir/Documentos/mente-activa/export_presets.cfg):
+  - `Linux/X11`
   - `Windows Desktop`
   - `Android`
-- Missing preset:
-  - `Linux/X11` or equivalent Linux desktop preset
-- Android preset details:
-  - `gradle_build/use_gradle_build=true`
-  - package id pattern: `com.guadalgames.$genname`
-  - export target path inside repo: `ejecutar/Mente Activa.apk`
+- El preset Android usa `Gradle`
+- El paquete Android sigue necesitando configuración de SDK path en el editor
 
-## Repository Risks
+### Riesgos del repositorio
 
-- Root contains generated/exported artifacts:
+- Hay artefactos generados mezclados con fuente:
   - [`mente-activa.pck`](/home/aesir/Documentos/mente-activa/mente-activa.pck)
   - [`ejecutar/`](/home/aesir/Documentos/mente-activa/ejecutar)
-- `.gitignore` ignores exports now, but already tracked generated files remain in history.
-- No top-level `README.md`.
-- No `docs/` before this bootstrap.
-- No visible release automation, checksum flow, manifest flow, or packaging scripts.
-- `addons/orchestrator` includes many platform binaries inside the repo. This may be correct for the addon, but it increases repository weight and requires version discipline.
+- `orchestrator` mete binarios vendorizados de varias plataformas
+- El proyecto requería saneado de UID del theme compartido
 
-## Tooling Notes
+### Validación
 
-- `git` and `jdk-openjdk` were already present on the host.
-- Godot/Android export tooling was requested for installation through package management.
-- If the package install succeeds, validate with:
+- Confirmado en host:
+  - `rtk`
+  - `git`
+  - `godot 4.6.3`
+  - `adb`
+  - `bundletool`
+- `scripts/validate-project` pasa
+- El arranque de UI dejó de emitir el warning del UID roto del theme tras el fix aplicado
 
-```bash
-rtk git status --short --branch
-rtk git remote -v
-rtk --version
-git --version
-godot --version
-```
+## English
 
-## Validation Results
+### Current status
+
+- Local repository synchronized with `origin/main`
+- Active branch: `main`
+- Remote: `https://github.com/0xCyberBerserker/mente-activa.git`
+- Local skills installed:
+  - `~/.codex/skills/godot`
+  - `~/.codex/skills/godot-ui`
+
+### Project shape
+
+- Engine: Godot `4.6` declared in [`project.godot`](/home/aesir/Documentos/mente-activa/project.godot)
+- Main scene resolved to [`Escena/control.tscn`](/home/aesir/Documentos/mente-activa/Escena/control.tscn)
+- Mixed runtime model:
+  - `.gd` scripts for minigame logic
+  - Orchestrator `.torch` scripts for menu flow
+- Base structure:
+  - [`Escena/`](/home/aesir/Documentos/mente-activa/Escena)
+  - [`script/`](/home/aesir/Documentos/mente-activa/script)
+  - [`addons/orchestrator/`](/home/aesir/Documentos/mente-activa/addons/orchestrator)
+
+### Export status
+
+- Existing presets in [`export_presets.cfg`](/home/aesir/Documentos/mente-activa/export_presets.cfg):
+  - `Linux/X11`
+  - `Windows Desktop`
+  - `Android`
+- The Android preset uses `Gradle`
+- Android packaging still requires SDK path configuration in the editor
+
+### Repository risks
+
+- Generated artifacts are mixed with source:
+  - [`mente-activa.pck`](/home/aesir/Documentos/mente-activa/mente-activa.pck)
+  - [`ejecutar/`](/home/aesir/Documentos/mente-activa/ejecutar)
+- `orchestrator` vendors multi-platform binaries
+- The project required shared theme UID cleanup
+
+### Validation
 
 - Confirmed on host:
-  - `rtk 0.37.2`
-  - `git 2.54.0`
-  - `godot 4.6.3.stable.arch_linux`
-  - `adb 35.0.2`
-  - `bundletool 1.18.3`
-- `godot --headless --path ... --quit` failed initially because the main scene UID was not yet imported on this machine.
-- `godot --headless --editor --path ... --quit` completed first import work and created `.godot/`, but surfaced project issues:
-  - unresolved scene UID `uid://2bg18qkxlkb2` during startup
-  - invalid theme UID in [`Escena/control.tscn`](/home/aesir/Documentos/mente-activa/Escena/control.tscn) falling back to `res://main_theme.tres`
-  - missing editor setting `export/android/android_sdk_path`
-  - leaked objects/RIDs and abnormal termination on editor exit
-
-## Immediate Technical Conclusions
-
-- The host environment is now suitable for Godot work.
-- The project still needs a cleanup pass before export automation is trustworthy.
-- First repair target should be resource UID consistency, then Android editor/export path configuration, then Linux export preset creation.
-
-## Recommended Next Technical Step
-
-1. Confirm `godot` launches this project headless.
-2. Add a Linux export preset.
-3. Decide whether tracked exports should stay in Git or move to release artifacts only.
+  - `rtk`
+  - `git`
+  - `godot 4.6.3`
+  - `adb`
+  - `bundletool`
+- `scripts/validate-project` passes
+- UI startup no longer emits the shared theme broken UID warning after the applied fix

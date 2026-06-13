@@ -1,93 +1,69 @@
 # Repo Organization Review
 
-## Baseline
+## Español
 
-This repository is functional as a small Godot project, but it is not yet organized like a professional shipping repository. Compared with the discipline used in `codex-ui-linux-port`, the main gaps are release hygiene, artifact boundaries, metadata, and reproducible operations.
+### Resumen
 
-## Priority 1
+El repositorio ya tiene una base mucho más seria, pero aún hay deuda estructural antes de llamar a la automatización de release “cerrada”.
 
-- Add a top-level `README.md` with:
-  - project purpose
-  - engine version
-  - local run command
-  - export targets
-  - addon dependency note for `orchestrator`
-- Separate source from outputs:
-  - keep scenes, scripts, assets, addons as source
-  - move generated deliverables to a dedicated release path such as `dist/`
-  - stop using root-level `.pck` files as normal tracked content
-- Decide a clear policy for `ejecutar/`:
-  - either remove tracked exports from Git
-  - or redefine it as a generated directory outside version control
+### Prioridad 1
 
-## Priority 2
+- mantener separados fuente y artefactos generados
+- evitar que `ejecutar/` y `.pck` queden como contenido normal del árbol
+- formalizar la política de binarios vendorizados de `orchestrator`
 
-- Introduce release metadata similar in spirit to `codex-ui-linux-port`:
+### Prioridad 2
+
+- consolidar metadata:
+  - `README.md`
+  - `SECURITY.md`
   - `VERSION.json`
-  - `checksums.txt` for published outputs
-  - optional `manifest.json` for release inventory
-- Add a minimal `SECURITY.md`.
-- Add a short `NOTICE.md` only if third-party attribution requires it beyond current licenses.
-- Create `docs/` structure for:
-  - local development
-  - export process
-  - release process
+  - `LICENSE`
+- mantener `docs/` como fuente operativa única
 
-## Priority 3
+### Prioridad 3
 
-- Add reproducible scripts under `scripts/`:
-  - `scripts/run-local`
-  - `scripts/export-linux`
-  - `scripts/export-android`
+- sostener scripts reproducibles:
   - `scripts/validate-project`
-- Keep scripts thin and deterministic.
-- Make scripts validate tool presence and fail loudly.
+  - `scripts/install-linux-templates`
+  - `scripts/export-linux`
+  - `scripts/package-release`
 
-## Priority 4
+### Prioridad 4
 
-- Add CI/release automation only after the tree is cleaned:
-  - project validation
-  - headless Godot smoke check
-  - export dry-run for Linux
-  - release asset checksum generation
-- If releases are going to be published from GitHub, formalize:
-  - tag naming
-  - version source of truth
-  - artifact naming
-  - checksum publication
+- endurecer la automatización de release con validaciones extra
+- añadir Android cuando el flujo de firma exista
 
-## Recommended Target Layout
+## English
 
-```text
-.
-├── README.md
-├── LICENSE
-├── SECURITY.md
-├── VERSION.json
-├── project.godot
-├── Escena/
-├── script/
-├── addons/
-├── assets/              # optional, if art grows
-├── docs/
-├── scripts/
-├── dist/                # generated release outputs only
-└── .github/workflows/   # later, once export flow is stable
-```
+### Summary
 
-## Specific Findings For This Repo
+The repository now has a much more serious base, but there is still structural debt before calling release automation “closed”.
 
-- `export_presets.cfg` has no Linux preset even though Linux is a required target for this host.
-- The repository already mixes source and generated deliverables.
-- There is no obvious versioning policy.
-- There is no release publication contract yet.
-- `orchestrator` binaries are vendored in-repo, so addon version pinning should be documented explicitly.
+### Priority 1
 
-## Execution Order
+- keep source and generated artifacts separated
+- avoid treating `ejecutar/` and `.pck` files as normal tree contents
+- formalize the vendored binary policy for `orchestrator`
 
-1. Add project metadata files.
-2. Move release outputs out of root and stop tracking generated artifacts.
-3. Add deterministic local scripts for run/export/validate.
-4. Add Linux export preset.
-5. Add release metadata and checksums flow.
-6. Add CI and publication automation.
+### Priority 2
+
+- consolidate metadata:
+  - `README.md`
+  - `SECURITY.md`
+  - `VERSION.json`
+  - `LICENSE`
+- keep `docs/` as the single operational source
+
+### Priority 3
+
+- preserve reproducible scripts:
+  - `scripts/validate-project`
+  - `scripts/install-linux-templates`
+  - `scripts/export-linux`
+  - `scripts/package-release`
+
+### Priority 4
+
+- harden release automation with extra validation
+- add Android once the signing flow exists

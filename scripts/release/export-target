@@ -68,7 +68,6 @@ fi
 
 bundle_dir="$package_parent/$bundle_name"
 mkdir -p "$bundle_dir"
-cp "$output_path" "$assets_dir/"
 cp "$output_path" "$bundle_dir/"
 
 while IFS= read -r sidecar; do

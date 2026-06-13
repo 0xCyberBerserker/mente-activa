@@ -33,9 +33,6 @@ base_name = version_data["artifactBaseName"]
 display_name = version_data["displayName"]
 
 patterns = [
-    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)\.x86_64$"), ("Linux", "x86_64", "Binary")),
-    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)\.arm64$"), ("Linux", "ARM64", "Binary")),
-    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)\.exe$"), ("Windows", "x86_64", "Binary")),
     (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)-android-arm64\.apk$"), ("Android", "arm64-v8a", "APK")),
     (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)-linux-x86_64\.zip$"), ("Linux", "x86_64", "ZIP")),
     (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)-linux-arm64\.zip$"), ("Linux", "ARM64", "ZIP")),

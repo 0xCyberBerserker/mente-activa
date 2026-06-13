@@ -13,9 +13,9 @@
 
 Objetivo actual:
 
-- Linux `x86_64`: binario principal + bundle `.zip`
-- Linux `ARM64`: binario principal + bundle `.zip`
-- Windows `x86_64`: `.exe` principal + bundle `.zip`
+- Linux `x86_64`: bundle `.zip` completo
+- Linux `ARM64`: bundle `.zip` completo
+- Windows `x86_64`: bundle `.zip` completo
 - Android `arm64-v8a`: `.apk` sin firmar
 - source archive
 - `manifest.json`
@@ -43,6 +43,7 @@ Objetivo actual:
 7. desplegar GitHub Pages
 
 La validación en CI usa `recovery-mode` del editor, pero el export real usa `godot --headless --export-release` porque los scripts `.torch` de Orchestrator no deben degradarse durante el empaquetado.
+Los artefactos desktop soportados son los `.zip` completos. Los binarios sueltos no se publican porque el runtime necesita sidecars nativos del addon `orchestrator` en el mismo directorio.
 La APK Android de esta fase se publica sin firma para no bloquear la release en una keystore todavía no formalizada.
 
 ## English
@@ -58,9 +59,9 @@ La APK Android de esta fase se publica sin firma para no bloquear la release en 
 
 Current target:
 
-- Linux `x86_64`: primary binary + `.zip` bundle
-- Linux `ARM64`: primary binary + `.zip` bundle
-- Windows `x86_64`: primary `.exe` + `.zip` bundle
+- Linux `x86_64`: complete `.zip` bundle
+- Linux `ARM64`: complete `.zip` bundle
+- Windows `x86_64`: complete `.zip` bundle
 - Android `arm64-v8a`: unsigned `.apk`
 - source archive
 - `manifest.json`
@@ -88,4 +89,5 @@ Current target:
 7. deploy GitHub Pages
 
 CI validation uses editor `recovery-mode`, but the real export uses `godot --headless --export-release` because Orchestrator `.torch` scripts must not be degraded during packaging.
+Supported desktop deliverables are the complete `.zip` bundles. Standalone binaries are not published because the runtime needs native `orchestrator` sidecars in the same directory.
 The Android APK in this phase is published unsigned so releases do not depend on a keystore that is not yet formalized.

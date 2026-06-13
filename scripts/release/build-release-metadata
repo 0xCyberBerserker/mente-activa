@@ -26,9 +26,6 @@ base_name = version_data["artifactBaseName"]
 repository = version_data["repository"]
 
 patterns = [
-    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}\.x86_64$"), {"platform": "linux", "architecture": "x86_64", "type": "binary"}),
-    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}\.arm64$"), {"platform": "linux", "architecture": "arm64", "type": "binary"}),
-    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}\.exe$"), {"platform": "windows", "architecture": "x86_64", "type": "binary"}),
     (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}-android-arm64\.apk$"), {"platform": "android", "architecture": "arm64-v8a", "type": "apk"}),
     (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}-linux-x86_64\.zip$"), {"platform": "linux", "architecture": "x86_64", "type": "bundle"}),
     (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}-linux-arm64\.zip$"), {"platform": "linux", "architecture": "arm64", "type": "bundle"}),

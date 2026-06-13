@@ -21,8 +21,9 @@ output_bin="dist/${base_name}-${version}.x86_64"
 archive_dir="dist/${base_name}-${version}-linux-x86_64"
 archive_zip="dist/${base_name}-${version}-linux-x86_64.zip"
 
-godot --headless --path "$repo_root" --import >/dev/null
-godot --headless --path "$repo_root" --export-release "$preset" "$output_bin"
+# Export through the editor in recovery mode to avoid Orchestrator editor
+# plugin crashes on headless Linux CI runners.
+godot --editor --recovery-mode --headless --path "$repo_root" --export-release "$preset" "$output_bin"
 
 rm -rf "$archive_dir"
 mkdir -p "$archive_dir"

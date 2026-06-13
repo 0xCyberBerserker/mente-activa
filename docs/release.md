@@ -30,6 +30,8 @@ Objetivo actual:
 
 La automatización Android debe añadirse más adelante, cuando el SDK path y la firma estén formalizados.
 
+La validación y el export Linux en CI usan `recovery-mode` del editor para evitar un crash conocido del addon Orchestrator en runners Linux.
+
 ## English
 
 ### Policy
@@ -59,3 +61,5 @@ Current target:
 ### Next phase
 
 Android automation should be added later, once SDK path and signing are formalized.
+
+CI validation and Linux export use editor `recovery-mode` to avoid a known Orchestrator addon crash on Linux runners.

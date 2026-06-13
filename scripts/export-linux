@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+command -v godot >/dev/null
+command -v jq >/dev/null
+
+version="$(jq -r '.version' VERSION.json)"
+godot_version="$(jq -r '.godotVersion' VERSION.json)"
+preset="$(jq -r '.linuxPreset' VERSION.json)"
+base_name="$(jq -r '.artifactBaseName' VERSION.json)"
+templates_dir="${HOME}/.local/share/godot/export_templates/${godot_version//-/.}"
+
+test -f "${templates_dir}/linux_release.x86_64"
+
+mkdir -p dist
+
+output_bin="dist/${base_name}-${version}.x86_64"
+archive_dir="dist/${base_name}-${version}-linux-x86_64"
+archive_zip="dist/${base_name}-${version}-linux-x86_64.zip"
+
+godot --headless --path "$repo_root" --import >/dev/null
+godot --headless --path "$repo_root" --export-release "$preset" "$output_bin"
+
+rm -rf "$archive_dir"
+mkdir -p "$archive_dir"
+cp "$output_bin" "$archive_dir/"
+
+(
+  cd dist
+  rm -f "$(basename "$archive_zip")"
+  zip -qr "$(basename "$archive_zip")" "$(basename "$archive_dir")"
+)
+
+printf '%s\n' "$archive_zip"

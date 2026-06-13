@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://2bg18qkxlkb2"]
 
 [ext_resource type="Script" uid="uid://ddpju5dtb2ysv" path="res://script/menuprincipal.torch" id="1_k0r78"]
-[ext_resource type="Theme" uid="uid://cm3j8p7w8y8x8" path="res://main_theme.tres" id="2_theme"]
+[ext_resource type="Theme" path="res://main_theme.tres" id="2_theme"]
 
 [sub_resource type="SystemFont" id="SystemFont_k0r78"]
 subpixel_positioning = 0

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+test -f project.godot
+command -v godot >/dev/null
+command -v jq >/dev/null
+
+godot --headless --path "$repo_root" --import >/dev/null
+godot --headless --path "$repo_root" --quit >/dev/null
+
+jq -e '.version and .godotVersion and .linuxPreset and .artifactBaseName' VERSION.json >/dev/null
+
+printf 'validation-ok\n'

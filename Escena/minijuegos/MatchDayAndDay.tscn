@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwhtof3ffp3um"]
 
 [ext_resource type="Script" uid="uid://dtrl26khkldeq" path="res://script/match_day_and_day.gd" id="1_rhot7"]
-[ext_resource type="Theme" uid="uid://cm3j8p7w8y8x8" path="res://main_theme.tres" id="2_theme"]
+[ext_resource type="Theme" path="res://main_theme.tres" id="2_theme"]
 
 [node name="MatchDayAndDay" type="Control" unique_id=1243356252]
 layout_mode = 3

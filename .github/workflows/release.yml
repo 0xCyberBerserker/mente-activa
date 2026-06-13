@@ -1,0 +1,104 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish"
+        required: true
+        default: "1.0.0"
+        type: string
+      make_latest:
+        description: "Mark release as latest"
+        required: true
+        default: true
+        type: boolean
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mente-activa-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+      - name: Install system tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq unzip zip xvfb gh
+
+      - name: Validate requested version
+        run: |
+          set -euo pipefail
+          test "${{ inputs.version }}" = "$(jq -r '.version' VERSION.json)"
+
+      - name: Resolve Godot version
+        id: meta
+        run: |
+          set -euo pipefail
+          echo "godot_version=$(jq -r '.godotVersion' VERSION.json)" >> "$GITHUB_OUTPUT"
+          echo "release_title=$(jq -r '.releaseTitle' VERSION.json)" >> "$GITHUB_OUTPUT"
+
+      - name: Download Godot editor
+        run: |
+          set -euo pipefail
+          version="${{ steps.meta.outputs.godot_version }}"
+          curl -fL "https://github.com/godotengine/godot-builds/releases/download/${version}/Godot_v${version}_linux.x86_64.zip" -o godot.zip
+          unzip -q godot.zip -d godot-bin
+          chmod +x godot-bin/Godot_v${version}_linux.x86_64
+          ln -sf "Godot_v${version}_linux.x86_64" godot-bin/godot
+
+      - name: Download Linux export templates
+        run: |
+          set -euo pipefail
+          version="${{ steps.meta.outputs.godot_version }}"
+          templates_dir="$HOME/.local/share/godot/export_templates/${version//-/.}"
+          mkdir -p "$templates_dir"
+          curl -fL "https://github.com/godotengine/godot-builds/releases/download/${version}/Godot_v${version}_export_templates.tpz" -o templates.tpz
+          unzip -q templates.tpz -d template-stage
+          cp -f template-stage/templates/linux_* "$templates_dir"/
+
+      - name: Validate project
+        env:
+          PATH: ${{ github.workspace }}/godot-bin:${{ env.PATH }}
+        run: scripts/validate-project
+
+      - name: Export Linux build
+        env:
+          PATH: ${{ github.workspace }}/godot-bin:${{ env.PATH }}
+        run: scripts/export-linux
+
+      - name: Package release metadata
+        run: scripts/package-release
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          latest_flag=""
+          if [ "${{ inputs.make_latest }}" = "true" ]; then
+            latest_flag="--latest"
+          fi
+          if gh release view "v${{ inputs.version }}" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "v${{ inputs.version }}" dist/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --clobber
+            gh release edit "v${{ inputs.version }}" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "${{ steps.meta.outputs.release_title }}" \
+              --notes "First stable manual release for Mente Activa." \
+              $latest_flag
+            exit 0
+          fi
+          gh release create "v${{ inputs.version }}" dist/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "${{ steps.meta.outputs.release_title }}" \
+            --notes "First stable manual release for Mente Activa." \
+            $latest_flag

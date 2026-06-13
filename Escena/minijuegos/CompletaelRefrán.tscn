@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2u03j1vub0r4"]
 
 [ext_resource type="Script" uid="uid://c5ndsndl2quqw" path="res://script/completa_el_refran.gd" id="1_refran"]
-[ext_resource type="Theme" uid="uid://cm3j8p7w8y8x8" path="res://main_theme.tres" id="2_theme"]
+[ext_resource type="Theme" path="res://main_theme.tres" id="2_theme"]
 
 [node name="CompletaElRefran" type="Control" unique_id=1409213587]
 layout_mode = 3

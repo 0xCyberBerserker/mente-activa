@@ -1,0 +1,8 @@
+{
+  "version": "1.0.0",
+  "channel": "stable",
+  "godotVersion": "4.6.3-stable",
+  "releaseTitle": "Mente Activa 1.0.0",
+  "linuxPreset": "Linux/X11",
+  "artifactBaseName": "mente-activa"
+}

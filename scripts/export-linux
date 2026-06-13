@@ -35,4 +35,6 @@ cp "$output_bin" "$archive_dir/"
   zip -qr "$(basename "$archive_zip")" "$(basename "$archive_dir")"
 )
 
+rm -rf "$archive_dir"
+
 printf '%s\n' "$archive_zip"

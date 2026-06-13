@@ -138,7 +138,9 @@ jobs:
             echo "Android cmdline-tools were not found on the runner" >&2
             exit 1
           fi
+          set +o pipefail
           yes | "$sdkmanager_bin" --licenses >/dev/null
+          set -o pipefail
           "$sdkmanager_bin" --install "platform-tools" "platforms;android-35" "build-tools;35.0.0" "cmdline-tools;latest" "ndk;27.0.12077973"
           echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
 

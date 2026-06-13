@@ -10,8 +10,8 @@ Mente Activa es un proyecto educativo en Godot 4 centrado en minijuegos cortos p
 
 ### Branding
 
-- Logo principal del proyecto: [`logoma.png`](/home/aesir/Documentos/mente-activa/logoma.png)
-- Variante vectorial disponible: [`logoma.svg`](/home/aesir/Documentos/mente-activa/logoma.svg)
+- Logo principal del proyecto: [`logoma.png`](./logoma.png)
+- Variante vectorial disponible: [`logoma.svg`](./logoma.svg)
 
 ### Créditos
 
@@ -29,11 +29,11 @@ La definición exacta de roles podrá ajustarse más adelante. Esta atribución 
 
 ### Estructura del repositorio
 
-- [`Escena/`](/home/aesir/Documentos/mente-activa/Escena): escenas Godot
-- [`script/`](/home/aesir/Documentos/mente-activa/script): GDScript y scripts de Orchestrator
-- [`addons/orchestrator/`](/home/aesir/Documentos/mente-activa/addons/orchestrator): addon y binarios vendorizados
-- [`docs/`](/home/aesir/Documentos/mente-activa/docs): documentación operativa y de mantenimiento
-- [`scripts/`](/home/aesir/Documentos/mente-activa/scripts): helpers reproducibles para local y CI
+- [`Escena/`](./Escena): escenas Godot
+- [`script/`](./script): GDScript y scripts de Orchestrator
+- [`addons/orchestrator/`](./addons/orchestrator): addon y binarios vendorizados
+- [`docs/`](./docs): documentación operativa y de mantenimiento
+- [`scripts/`](./scripts): helpers reproducibles para local y CI
 
 ### Requisitos
 
@@ -66,11 +66,11 @@ El workflow exporta la build Linux de escritorio, empaqueta metadatos de release
 
 ### Seguridad
 
-Consulta [SECURITY.md](/home/aesir/Documentos/mente-activa/SECURITY.md).
+Consulta [SECURITY.md](./SECURITY.md).
 
 ### Licencia
 
-Este repositorio usa licencia [MIT](/home/aesir/Documentos/mente-activa/LICENSE), apta para uso comercial y open source.
+Este repositorio usa licencia [MIT](./LICENSE), apta para uso comercial y open source.
 
 Made with ❤️
 
@@ -80,8 +80,8 @@ Mente Activa is a Godot 4 educational project focused on short minigames for mem
 
 ### Branding
 
-- Primary project logo: [`logoma.png`](/home/aesir/Documentos/mente-activa/logoma.png)
-- Vector variant available: [`logoma.svg`](/home/aesir/Documentos/mente-activa/logoma.svg)
+- Primary project logo: [`logoma.png`](./logoma.png)
+- Vector variant available: [`logoma.svg`](./logoma.svg)
 
 ### Credits
 
@@ -99,11 +99,11 @@ Role naming can be refined later. This attribution is kept explicit from the fir
 
 ### Repository layout
 
-- [`Escena/`](/home/aesir/Documentos/mente-activa/Escena): Godot scenes
-- [`script/`](/home/aesir/Documentos/mente-activa/script): GDScript and Orchestrator scripts
-- [`addons/orchestrator/`](/home/aesir/Documentos/mente-activa/addons/orchestrator): vendored addon binaries and metadata
-- [`docs/`](/home/aesir/Documentos/mente-activa/docs): operations and maintenance docs
-- [`scripts/`](/home/aesir/Documentos/mente-activa/scripts): reproducible local and CI helpers
+- [`Escena/`](./Escena): Godot scenes
+- [`script/`](./script): GDScript and Orchestrator scripts
+- [`addons/orchestrator/`](./addons/orchestrator): vendored addon binaries and metadata
+- [`docs/`](./docs): operations and maintenance docs
+- [`scripts/`](./scripts): reproducible local and CI helpers
 
 ### Requirements
 
@@ -136,10 +136,10 @@ The workflow exports the Linux desktop build, packages release metadata, and pub
 
 ### Security
 
-See [SECURITY.md](/home/aesir/Documentos/mente-activa/SECURITY.md).
+See [SECURITY.md](./SECURITY.md).
 
 ### License
 
-This repository uses the [MIT](/home/aesir/Documentos/mente-activa/LICENSE) license, suitable for commercial use and open source distribution.
+This repository uses the [MIT](./LICENSE) license, suitable for commercial use and open source distribution.
 
 Made with ❤️

@@ -1,21 +1,43 @@
-MIT License
+Mente Activa Source-Available License Notice
 
 Copyright (c) 2026 Mente Activa contributors
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This repository is source-available and free for non-commercial use.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The intended public license model for this project is PolyForm Noncommercial 1.0.0.
+This file is a repository notice and summary for users of this repository.
+For the non-commercial public licensing baseline, see:
+https://polyformproject.org/licenses/noncommercial/1.0.0/
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Key rule:
+
+- Commercial use requires a separate prior commercial license.
+
+For the purposes of this repository, commercial use includes any use by or for:
+
+- private care homes or residences,
+- private clinics,
+- companies,
+- consultancies,
+- insurers,
+- SaaS providers,
+- organizations charging for services where this software provides value,
+- any entity using the software as part of an economic activity.
+
+If you are an individual, family member, private caregiver, student, non-commercial
+researcher, or a qualifying non-profit / non-commercial social entity, see
+`LICENSE-FAQ.md` for the intended allowed non-commercial use cases.
+
+Commercial licensing:
+
+- See `COMMERCIAL-LICENSE.md`
+- Contact: `commercial-license@example.com`
+
+Legal references:
+
+- PolyForm Noncommercial 1.0.0: https://polyformproject.org/licenses/noncommercial/1.0.0/
+
+This repository is not OSI-approved open source because it restricts commercial use.
+
+This notice is not legal advice. For commercial agreements or enforcement,
+consult a qualified lawyer.

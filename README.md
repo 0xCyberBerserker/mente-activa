@@ -70,7 +70,23 @@ Consulta [SECURITY.md](./SECURITY.md).
 
 ### Licencia
 
-Este repositorio usa licencia [MIT](./LICENSE), apta para uso comercial y open source.
+Este proyecto es `source-available`.
+
+Es gratuito para uso personal, familiar, educativo, investigación no comercial y entidades no comerciales permitidas.
+
+El uso comercial requiere licencia comercial previa.
+
+Esto incluye, entre otros, el uso por parte de residencias privadas, clínicas privadas, empresas, consultoras, aseguradoras, proveedores SaaS y cualquier entidad que use el software como parte de una actividad económica o un servicio de pago.
+
+No es software open source aprobado por OSI porque restringe el uso comercial.
+
+Consulta:
+
+- [LICENSE](./LICENSE)
+- [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)
+- [LICENSE-FAQ.md](./LICENSE-FAQ.md)
+
+Esto no es asesoramiento legal. Para acuerdos comerciales o reclamaciones, consulta con un abogado cualificado.
 
 Made with ❤️
 
@@ -140,6 +156,22 @@ See [SECURITY.md](./SECURITY.md).
 
 ### License
 
-This repository uses the [MIT](./LICENSE) license, suitable for commercial use and open source distribution.
+This project is `source-available`.
+
+It is free for personal, family, educational, non-commercial research, and permitted non-commercial entity use.
+
+Commercial use requires a prior commercial license.
+
+This includes, among others, use by private care homes, private clinics, companies, consultancies, insurers, SaaS providers, and any entity using the software as part of an economic activity or paid service.
+
+It is not OSI-approved open source because it restricts commercial use.
+
+See:
+
+- [LICENSE](./LICENSE)
+- [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)
+- [LICENSE-FAQ.md](./LICENSE-FAQ.md)
+
+This is not legal advice. For commercial agreements or enforcement, consult a qualified lawyer.
 
 Made with ❤️

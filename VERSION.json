@@ -4,6 +4,8 @@
   "godotVersion": "4.6.3-stable",
   "releaseTitle": "Mente Activa 1.0.0",
   "displayName": "Mente Activa",
+  "licenseModel": "source-available",
+  "licenseName": "PolyForm Noncommercial 1.0.0 style source-available non-commercial license",
   "branding": {
     "logoPng": "logoma.png",
     "logoSvg": "logoma.svg"

@@ -56,7 +56,7 @@ PY
 
 (
   cd dist
-  sha256sum ./* > checksums.txt
+  find . -maxdepth 1 -type f -print0 | sort -z | xargs -0 sha256sum > checksums.txt
 )
 
 printf 'package-release-ok\n'

@@ -1,17 +1,19 @@
-# Godot 4+ specific ignores
+# --- Temporales de Godot ---
 .godot/
-.nomedia
-
-# Godot-specific ignores
 .import/
-export.cfg
-export_credentials.cfg
-*.tmp
+export_presets.cfg
 
-# Imported translations (automatically generated from CSV files)
-*.translation
+# --- Tus carpetas de exportación y ejecutables (Basado en tu captura) ---
+bin/
+ejecutable/
+web/
+android/
 
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
+# --- Extensiones sueltas por si acaso ---
+*.apk
+*.aab
+*.exe
+*.zip
+*.html
+*.js
+*.wasm

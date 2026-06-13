@@ -217,9 +217,16 @@ jobs:
             gh release upload "v${{ needs.prepare.outputs.version }}" "${assets[@]}" \
               --repo "${{ needs.prepare.outputs.repository }}" \
               --clobber
-            gh release delete-asset "v${{ needs.prepare.outputs.version }}" orchestrator.linux.64.release.so \
-              --repo "${{ needs.prepare.outputs.repository }}" \
-              --yes || true
+            for stale_asset in \
+              "orchestrator.linux.64.release.so" \
+              "mente-activa-${{ needs.prepare.outputs.version }}.arm64" \
+              "mente-activa-${{ needs.prepare.outputs.version }}.x86_64" \
+              "mente-activa-${{ needs.prepare.outputs.version }}.exe"
+            do
+              gh release delete-asset "v${{ needs.prepare.outputs.version }}" "$stale_asset" \
+                --repo "${{ needs.prepare.outputs.repository }}" \
+                --yes || true
+            done
             gh release edit "v${{ needs.prepare.outputs.version }}" \
               --repo "${{ needs.prepare.outputs.repository }}" \
               --title "${{ needs.prepare.outputs.release_title }}" \

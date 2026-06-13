@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://2bg18qkxlkb2"]
+
+[ext_resource type="Script" uid="uid://ddpju5dtb2ysv" path="res://script/menuprincipal.torch" id="1_k0r78"]
+[ext_resource type="Theme" uid="uid://cm3j8p7w8y8x8" path="res://main_theme.tres" id="2_theme"]
+
+[sub_resource type="SystemFont" id="SystemFont_k0r78"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font = SubResource("SystemFont_k0r78")
+font_size = 64
+font_color = Color(0.976471, 0.956863, 0.909804, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.25)
+shadow_offset = Vector2(2, 2)
+
+[node name="Control" type="Control" unique_id=1422823092]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_k0r78")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 60.0
+offset_right = -80.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="LogoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/LogoContainer"]
+layout_mode = 2
+text = "Mente Activa"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MarginContainer/VBoxContainer/LogoContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.827451, 0.85098, 0.882353, 1)
+theme_override_font_sizes/font_size = 24
+text = "Entrena memoria, lenguaje y atención con partidas cortas."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="Practicar" type="Button" parent="MarginContainer/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Practicar"
+
+[node name="Cerrar" type="Button" parent="MarginContainer/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Cerrar"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuButtons/Practicar" to="." method="_on_practicar_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuButtons/Cerrar" to="." method="_on_cerrar_pressed"]

@@ -1,0 +1,168 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwhtof3ffp3um"]
+
+[ext_resource type="Script" uid="uid://dtrl26khkldeq" path="res://script/match_day_and_day.gd" id="1_rhot7"]
+[ext_resource type="Theme" uid="uid://cm3j8p7w8y8x8" path="res://main_theme.tres" id="2_theme"]
+
+[node name="MatchDayAndDay" type="Control" unique_id=1243356252]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_rhot7")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 40.0
+offset_right = -60.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer/Card"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Header" type="VBoxContainer" parent="MarginContainer/Card/Content"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="MarginContainer/Card/Content/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Parejas del Día a Día"
+autowrap_mode = 3
+
+[node name="MatchesLabel" type="Label" parent="MarginContainer/Card/Content/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Parejas: 0/6"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="MarginContainer/Card/Content"]
+layout_mode = 2
+text = "Selecciona dos cartas relacionadas entre sí."
+autowrap_mode = 3
+
+[node name="FeedbackLabel" type="Label" parent="MarginContainer/Card/Content"]
+layout_mode = 2
+text = ""
+autowrap_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/Card/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 4
+
+[node name="Button1" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 1"
+
+[node name="Button2" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 2"
+
+[node name="Button3" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 3"
+
+[node name="Button4" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 4"
+
+[node name="Button5" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 5"
+
+[node name="Button6" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 6"
+
+[node name="Button7" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 7"
+
+[node name="Button8" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 8"
+
+[node name="Button9" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 9"
+
+[node name="Button10" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 10"
+
+[node name="Button11" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 11"
+
+[node name="Button12" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Carta 12"
+
+[node name="Footer" type="HBoxContainer" parent="MarginContainer/Card/Content"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BackButton" type="Button" parent="MarginContainer/Card/Content/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 56)
+text = "Volver al menú"
+
+[node name="RestartButton" type="Button" parent="MarginContainer/Card/Content/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 56)
+text = "Reiniciar"
+
+[connection signal="pressed" from="MarginContainer/Card/Content/Footer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer/Card/Content/Footer/RestartButton" to="." method="_on_restart_pressed"]

@@ -45,10 +45,6 @@ case "$target" in
       echo "ANDROID_HOME or ANDROID_SDK_ROOT is required for Android export" >&2
       exit 1
     fi
-    if [[ -z "${GODOT_ANDROID_KEYSTORE_RELEASE_PATH:-}" || -z "${GODOT_ANDROID_KEYSTORE_RELEASE_USER:-}" || -z "${GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD:-}" ]]; then
-      echo "Android release signing environment variables are missing" >&2
-      exit 1
-    fi
     ;;
   *)
     echo "Unsupported target: $target" >&2

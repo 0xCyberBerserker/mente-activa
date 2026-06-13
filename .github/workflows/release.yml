@@ -114,17 +114,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y curl jq unzip zip python3 openjdk-17-jdk xvfb
 
-      - name: Validate Android signing secrets
-        env:
-          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-        run: |
-          set -euo pipefail
-          test -n "$ANDROID_KEYSTORE_BASE64"
-          test -n "$ANDROID_KEYSTORE_ALIAS"
-          test -n "$ANDROID_KEYSTORE_PASSWORD"
-
       - name: Download Godot editor
         run: |
           set -euo pipefail
@@ -152,19 +141,6 @@ jobs:
           yes | "$sdkmanager_bin" --licenses >/dev/null
           "$sdkmanager_bin" --install "platform-tools" "platforms;android-35" "build-tools;35.0.0" "cmdline-tools;latest" "ndk;27.0.12077973"
           echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
-
-      - name: Materialize Android keystore
-        env:
-          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-          ANDROID_KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-        run: |
-          set -euo pipefail
-          keystore_path="$RUNNER_TEMP/mente-activa-release.keystore"
-          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$keystore_path"
-          echo "GODOT_ANDROID_KEYSTORE_RELEASE_PATH=$keystore_path" >> "$GITHUB_ENV"
-          echo "GODOT_ANDROID_KEYSTORE_RELEASE_USER=$ANDROID_KEYSTORE_ALIAS" >> "$GITHUB_ENV"
-          echo "GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD=$ANDROID_KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
 
       - name: Validate project
         run: scripts/validate/project

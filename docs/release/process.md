@@ -16,7 +16,7 @@ Objetivo actual:
 - Linux `x86_64`: binario principal + bundle `.zip`
 - Linux `ARM64`: binario principal + bundle `.zip`
 - Windows `x86_64`: `.exe` principal + bundle `.zip`
-- Android `arm64-v8a`: `.apk` firmado
+- Android `arm64-v8a`: `.apk` sin firmar
 - source archive
 - `manifest.json`
 - `checksums.txt`
@@ -30,7 +30,7 @@ Objetivo actual:
 - existen presets `Linux/X11`, `Linux ARM64`, `Windows Desktop` y `Android`
 - no hay secretos en el repo
 - las export templates se preparan con `scripts/release/install-templates`
-- Android requiere secretos de firma y SDK operativo en CI
+- Android requiere SDK operativo en CI
 
 ### Flujo
 
@@ -43,6 +43,7 @@ Objetivo actual:
 7. desplegar GitHub Pages
 
 La validación en CI usa `recovery-mode` del editor, pero el export real usa `godot --headless --export-release` porque los scripts `.torch` de Orchestrator no deben degradarse durante el empaquetado.
+La APK Android de esta fase se publica sin firma para no bloquear la release en una keystore todavía no formalizada.
 
 ## English
 
@@ -60,7 +61,7 @@ Current target:
 - Linux `x86_64`: primary binary + `.zip` bundle
 - Linux `ARM64`: primary binary + `.zip` bundle
 - Windows `x86_64`: primary `.exe` + `.zip` bundle
-- Android `arm64-v8a`: signed `.apk`
+- Android `arm64-v8a`: unsigned `.apk`
 - source archive
 - `manifest.json`
 - `checksums.txt`
@@ -74,7 +75,7 @@ Current target:
 - `Linux/X11`, `Linux ARM64`, `Windows Desktop`, and `Android` presets exist
 - no secrets are stored in the repo
 - export templates are prepared through `scripts/release/install-templates`
-- Android requires signing secrets and a working SDK in CI
+- Android requires a working SDK in CI
 
 ### Flow
 
@@ -87,3 +88,4 @@ Current target:
 7. deploy GitHub Pages
 
 CI validation uses editor `recovery-mode`, but the real export uses `godot --headless --export-release` because Orchestrator `.torch` scripts must not be degraded during packaging.
+The Android APK in this phase is published unsigned so releases do not depend on a keystore that is not yet formalized.

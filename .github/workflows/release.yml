@@ -53,6 +53,7 @@ jobs:
           unzip -q godot.zip -d godot-bin
           chmod +x godot-bin/Godot_v${version}_linux.x86_64
           ln -sf "Godot_v${version}_linux.x86_64" godot-bin/godot
+          echo "${GITHUB_WORKSPACE}/godot-bin" >> "$GITHUB_PATH"
 
       - name: Download Linux export templates
         run: |
@@ -65,13 +66,9 @@ jobs:
           cp -f template-stage/templates/linux_* "$templates_dir"/
 
       - name: Validate project
-        env:
-          PATH: ${{ github.workspace }}/godot-bin:${{ env.PATH }}
         run: scripts/validate-project
 
       - name: Export Linux build
-        env:
-          PATH: ${{ github.workspace }}/godot-bin:${{ env.PATH }}
         run: scripts/export-linux
 
       - name: Package release metadata

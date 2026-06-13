@@ -53,7 +53,11 @@ case "$target" in
 esac
 
 output_path="$export_dir/$primary_asset"
-godot --headless --path "$repo_root" --export-release "$preset" "$output_path"
+if [[ "$platform" == "android" ]]; then
+  godot --headless --path "$repo_root" --install-android-build-template --export-release "$preset" "$output_path"
+else
+  godot --headless --path "$repo_root" --export-release "$preset" "$output_path"
+fi
 test -f "$output_path"
 
 if [[ "$platform" == "android" ]]; then

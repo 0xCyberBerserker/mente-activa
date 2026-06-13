@@ -3,6 +3,11 @@
   "channel": "stable",
   "godotVersion": "4.6.3-stable",
   "releaseTitle": "Mente Activa 1.0.0",
+  "displayName": "Mente Activa",
+  "branding": {
+    "logoPng": "logoma.png",
+    "logoSvg": "logoma.svg"
+  },
   "linuxPreset": "Linux/X11",
   "artifactBaseName": "mente-activa"
 }

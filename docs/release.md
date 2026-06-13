@@ -16,6 +16,7 @@ Objetivo actual:
 - source archive
 - `manifest.json`
 - `checksums.txt`
+- assets de branding (`logoma.png`, `logoma.svg`) incluidos en el source archive
 
 ### Precondiciones
 
@@ -45,6 +46,7 @@ Current target:
 - source archive
 - `manifest.json`
 - `checksums.txt`
+- branding assets (`logoma.png`, `logoma.svg`) included in the source archive
 
 ### Preconditions
 

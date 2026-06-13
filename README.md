@@ -1,8 +1,17 @@
 # Mente Activa
 
+<p align="center">
+  <img src="logoma.png" alt="Mente Activa logo" width="180">
+</p>
+
 ## Español
 
 Mente Activa es un proyecto educativo en Godot 4 centrado en minijuegos cortos para entrenar memoria, lenguaje y atención.
+
+### Branding
+
+- Logo principal del proyecto: [`logoma.png`](/home/aesir/Documentos/mente-activa/logoma.png)
+- Variante vectorial disponible: [`logoma.svg`](/home/aesir/Documentos/mente-activa/logoma.svg)
 
 ### Créditos
 
@@ -68,6 +77,11 @@ Made with ❤️
 ## English
 
 Mente Activa is a Godot 4 educational project focused on short minigames for memory, language, and attention training.
+
+### Branding
+
+- Primary project logo: [`logoma.png`](/home/aesir/Documentos/mente-activa/logoma.png)
+- Vector variant available: [`logoma.svg`](/home/aesir/Documentos/mente-activa/logoma.svg)
 
 ### Credits
 

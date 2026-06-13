@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+cd "$repo_root"
+require_commands gh python3 jq
+
+repo="${1:-${GITHUB_REPOSITORY:-$(json_get '.repository')}}"
+markdown_output="${2:-$repo_root/docs/release/releases.md}"
+json_output="${3:-$repo_root/site/data/releases.json}"
+markdown_data_output="${4:-$repo_root/site/data/releases.md}"
+
+tmp_json="$(mktemp)"
+trap 'rm -f "$tmp_json"' EXIT
+
+gh api --paginate "repos/${repo}/releases" > "$tmp_json"
+
+python3 - "$repo_root" "$tmp_json" "$repo" "$markdown_output" "$json_output" "$markdown_data_output" <<'PY'
+import json
+import re
+import sys
+from pathlib import Path
+
+repo_root = Path(sys.argv[1])
+releases_path = Path(sys.argv[2])
+repository = sys.argv[3]
+markdown_output = Path(sys.argv[4])
+json_output = Path(sys.argv[5])
+markdown_data_output = Path(sys.argv[6])
+version_data = json.loads((repo_root / "VERSION.json").read_text())
+base_name = version_data["artifactBaseName"]
+display_name = version_data["displayName"]
+
+patterns = [
+    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)\.x86_64$"), ("Linux", "x86_64", "Binary")),
+    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)\.arm64$"), ("Linux", "ARM64", "Binary")),
+    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)\.exe$"), ("Windows", "x86_64", "Binary")),
+    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)-android-arm64\.apk$"), ("Android", "arm64-v8a", "APK")),
+    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)-linux-x86_64\.zip$"), ("Linux", "x86_64", "ZIP")),
+    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)-linux-arm64\.zip$"), ("Linux", "ARM64", "ZIP")),
+    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)-windows-x86_64\.zip$"), ("Windows", "x86_64", "ZIP")),
+    (re.compile(rf"^{re.escape(base_name)}-(?P<version>.+)-source\.zip$"), ("Source", "Any", "Source ZIP")),
+]
+
+def sha(asset):
+    digest = asset.get("digest") or ""
+    if digest.startswith("sha256:"):
+        return digest.split(":", 1)[1]
+    return ""
+
+releases = []
+rows = []
+for release in json.loads(releases_path.read_text()):
+    if release.get("draft"):
+        continue
+    tag = release["tag_name"]
+    release_version = tag[1:] if tag.startswith("v") else tag
+    entry = {
+        "version": release_version,
+        "tag": tag,
+        "name": release.get("name") or tag,
+        "publishedAt": release.get("published_at"),
+        "url": release.get("html_url"),
+        "assets": [],
+    }
+    for asset in release.get("assets", []):
+        for pattern, meta in patterns:
+            match = pattern.match(asset["name"])
+            if not match:
+                continue
+            platform, architecture, kind = meta
+            asset_entry = {
+                "name": asset["name"],
+                "platform": platform,
+                "architecture": architecture,
+                "kind": kind,
+                "downloadUrl": asset["browser_download_url"],
+                "sha256": sha(asset),
+                "size": asset.get("size", 0),
+            }
+            entry["assets"].append(asset_entry)
+            rows.append({
+                "version": release_version,
+                "channel": "stable",
+                "platform": platform,
+                "architecture": architecture,
+                "kind": kind,
+                "url": asset["browser_download_url"],
+                "sha256": asset_entry["sha256"],
+            })
+            break
+    entry["assets"].sort(key=lambda item: (item["platform"], item["architecture"], item["kind"], item["name"]))
+    releases.append(entry)
+
+releases.sort(key=lambda item: item["publishedAt"] or "", reverse=True)
+rows.sort(key=lambda item: (item["version"], item["platform"], item["architecture"], item["kind"]), reverse=True)
+
+payload = {
+    "project": display_name,
+    "repository": repository,
+    "releases": releases,
+}
+
+markdown_lines = [
+    f"# {display_name} Releases",
+    "",
+    "## Español",
+    "",
+    "Tabla generada automáticamente desde GitHub Releases.",
+    "",
+    "| Versión | Canal | Sistema | Arquitectura | Artefacto | Descarga | SHA256 |",
+    "| --- | --- | --- | --- | --- | --- | --- |",
+]
+
+for row in rows:
+    markdown_lines.append(
+        f"| {row['version']} | {row['channel']} | {row['platform']} | {row['architecture']} | {row['kind']} | [Descargar]({row['url']}) | `{row['sha256']}` |"
+    )
+
+markdown_lines.extend([
+    "",
+    "## English",
+    "",
+    "Automatically generated table sourced from GitHub Releases.",
+    "",
+    "| Version | Channel | OS | Architecture | Artifact | Download | SHA256 |",
+    "| --- | --- | --- | --- | --- | --- | --- |",
+])
+
+for row in rows:
+    markdown_lines.append(
+        f"| {row['version']} | {row['channel']} | {row['platform']} | {row['architecture']} | {row['kind']} | [Download]({row['url']}) | `{row['sha256']}` |"
+    )
+
+markdown_output.parent.mkdir(parents=True, exist_ok=True)
+json_output.parent.mkdir(parents=True, exist_ok=True)
+markdown_data_output.parent.mkdir(parents=True, exist_ok=True)
+markdown_text = "\n".join(markdown_lines) + "\n"
+markdown_output.write_text(markdown_text)
+markdown_data_output.write_text(markdown_text)
+json_output.write_text(json.dumps(payload, indent=2) + "\n")
+PY
+
+printf '%s\n' "$markdown_output"

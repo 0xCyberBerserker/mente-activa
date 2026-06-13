@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+target="${1:?missing release target}"
+
+cd "$repo_root"
+require_commands godot jq zip python3
+
+version="$(json_get '.version')"
+base_name="$(json_get '.artifactBaseName')"
+preset="$(target_json_get "$target" '.preset')"
+platform="$(target_json_get "$target" '.platform')"
+architecture="$(target_json_get "$target" '.architecture')"
+target_templates_dir="$(templates_dir)"
+workspace="$(release_workspace)"
+export_dir="$workspace/exports/$target"
+package_parent="$workspace/packages/$target"
+assets_dir="$workspace/assets/$target"
+
+clean_dir "$export_dir"
+clean_dir "$package_parent"
+clean_dir "$assets_dir"
+
+case "$target" in
+  linux-x86_64)
+    test -f "$target_templates_dir/linux_release.x86_64"
+    primary_asset="${base_name}-${version}.x86_64"
+    bundle_name="${base_name}-${version}-linux-x86_64"
+    ;;
+  linux-arm64)
+    test -f "$target_templates_dir/linux_release.arm64"
+    primary_asset="${base_name}-${version}.arm64"
+    bundle_name="${base_name}-${version}-linux-arm64"
+    ;;
+  windows-x86_64)
+    primary_asset="${base_name}-${version}.exe"
+    bundle_name="${base_name}-${version}-windows-x86_64"
+    ;;
+  android-arm64)
+    primary_asset="${base_name}-${version}-android-arm64.apk"
+    bundle_name=""
+    if [[ -z "${ANDROID_HOME:-}" && -z "${ANDROID_SDK_ROOT:-}" ]]; then
+      echo "ANDROID_HOME or ANDROID_SDK_ROOT is required for Android export" >&2
+      exit 1
+    fi
+    if [[ -z "${GODOT_ANDROID_KEYSTORE_RELEASE_PATH:-}" || -z "${GODOT_ANDROID_KEYSTORE_RELEASE_USER:-}" || -z "${GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD:-}" ]]; then
+      echo "Android release signing environment variables are missing" >&2
+      exit 1
+    fi
+    ;;
+  *)
+    echo "Unsupported target: $target" >&2
+    exit 1
+    ;;
+esac
+
+output_path="$export_dir/$primary_asset"
+godot --headless --path "$repo_root" --export-release "$preset" "$output_path"
+test -f "$output_path"
+
+if [[ "$platform" == "android" ]]; then
+  cp "$output_path" "$assets_dir/"
+  printf '%s\n' "$assets_dir"
+  exit 0
+fi
+
+bundle_dir="$package_parent/$bundle_name"
+mkdir -p "$bundle_dir"
+cp "$output_path" "$assets_dir/"
+cp "$output_path" "$bundle_dir/"
+
+while IFS= read -r sidecar; do
+  cp "$sidecar" "$bundle_dir/"
+done < <(find "$export_dir" -maxdepth 1 -type f ! -name "$(basename "$output_path")" | sort)
+
+(
+  cd "$package_parent"
+  rm -f "$assets_dir/${bundle_name}.zip"
+  zip -qr "$assets_dir/${bundle_name}.zip" "$bundle_name"
+)
+
+printf '%s\n' "$assets_dir"

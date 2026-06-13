@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+cd "$repo_root"
+require_commands git jq zip
+
+version="$(json_get '.version')"
+base_name="$(json_get '.artifactBaseName')"
+output_dir="${1:-$repo_root/dist}"
+source_zip="$output_dir/${base_name}-${version}-source.zip"
+
+mkdir -p "$output_dir"
+rm -f "$source_zip"
+
+mapfile -d '' tracked_files < <(git ls-files -z)
+zip -q "$source_zip" "${tracked_files[@]}"
+
+printf '%s\n' "$source_zip"

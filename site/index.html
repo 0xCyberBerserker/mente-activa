@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mente Activa</title>
+    <meta name="description" content="Mente Activa: ejercicios cortos de memoria, lenguaje y atención con releases para Linux, Windows y Android.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <nav class="topbar">
+          <span class="eyebrow">Mente Activa</span>
+          <a class="nav-link" href="./releases.md">Releases.md</a>
+        </nav>
+        <div class="hero-grid">
+          <section class="hero-copy">
+            <p class="kicker">Educación cognitiva en formato directo</p>
+            <h1>Entrena memoria, lenguaje y atención con una distribución seria y visible.</h1>
+            <p class="lede">
+              Proyecto Godot 4 con releases manuales, tabla pública de versiones por sistema operativo y distribución preparada para Linux, Raspberry Pi, Windows y Android.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" id="latest-release-link" href="https://github.com/0xCyberBerserker/mente-activa/releases">Ver descargas</a>
+              <a class="button button-secondary" href="https://github.com/0xCyberBerserker/mente-activa">Repositorio</a>
+            </div>
+            <div class="hero-meta">
+              <span>Idea inicial: rabudev</span>
+              <span>Colabora: 0xCyberBerserker</span>
+            </div>
+          </section>
+          <aside class="hero-mark">
+            <div class="mark-frame">
+              <img src="./assets/logoma.svg" alt="Mente Activa logo">
+            </div>
+            <p class="mark-caption">Made with ❤️</p>
+          </aside>
+        </div>
+      </header>
+
+      <main>
+        <section class="status-band">
+          <article>
+            <span class="label">Estado</span>
+            <strong id="latest-version">Cargando</strong>
+          </article>
+          <article>
+            <span class="label">Canal</span>
+            <strong>Stable</strong>
+          </article>
+          <article>
+            <span class="label">Entrega pública</span>
+            <strong>GitHub Releases + Pages</strong>
+          </article>
+        </section>
+
+        <section class="section">
+          <div class="section-heading">
+            <p class="section-kicker">Plataformas</p>
+            <h2>Releases visibles por sistema operativo.</h2>
+          </div>
+          <div class="platform-strip">
+            <span>Linux x86_64</span>
+            <span>Linux ARM64</span>
+            <span>Windows x86_64</span>
+            <span>Android arm64-v8a</span>
+          </div>
+        </section>
+
+        <section class="section releases-section">
+          <div class="section-heading">
+            <p class="section-kicker">Versiones</p>
+            <h2>Índice público de descargas.</h2>
+            <p>La tabla se genera desde los assets reales publicados en GitHub Releases.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Versión</th>
+                  <th>Sistema</th>
+                  <th>Arquitectura</th>
+                  <th>Artefacto</th>
+                  <th>Descarga</th>
+                  <th>SHA256</th>
+                </tr>
+              </thead>
+              <tbody id="release-table-body">
+                <tr>
+                  <td colspan="6">Cargando releases...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section narrative">
+          <div class="narrative-card">
+            <p class="section-kicker">English</p>
+            <h2>Short English summary.</h2>
+            <p>Mente Activa is a Godot 4 educational application distributed through manually curated releases, with a public download index and a lightweight GitHub Pages presence.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+  </html>

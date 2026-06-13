@@ -4,12 +4,34 @@
   "godotVersion": "4.6.3-stable",
   "releaseTitle": "Mente Activa 1.0.0",
   "displayName": "Mente Activa",
+  "repository": "0xCyberBerserker/mente-activa",
   "licenseModel": "source-available",
   "licenseName": "PolyForm Noncommercial 1.0.0 style source-available non-commercial license",
   "branding": {
     "logoPng": "logoma.png",
     "logoSvg": "logoma.svg"
   },
-  "linuxPreset": "Linux/X11",
-  "artifactBaseName": "mente-activa"
+  "artifactBaseName": "mente-activa",
+  "targets": {
+    "linux-x86_64": {
+      "preset": "Linux/X11",
+      "platform": "linux",
+      "architecture": "x86_64"
+    },
+    "linux-arm64": {
+      "preset": "Linux ARM64",
+      "platform": "linux",
+      "architecture": "arm64"
+    },
+    "windows-x86_64": {
+      "preset": "Windows Desktop",
+      "platform": "windows",
+      "architecture": "x86_64"
+    },
+    "android-arm64": {
+      "preset": "Android",
+      "platform": "android",
+      "architecture": "arm64-v8a"
+    }
+  }
 }

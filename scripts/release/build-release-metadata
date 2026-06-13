@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+cd "$repo_root"
+require_commands jq python3 sha256sum
+
+output_dir="${1:-$repo_root/dist}"
+mkdir -p "$output_dir"
+
+python3 - "$repo_root" "$output_dir" <<'PY'
+import json
+import re
+import sys
+from pathlib import Path
+
+repo_root = Path(sys.argv[1])
+dist = Path(sys.argv[2])
+version_data = json.loads((repo_root / "VERSION.json").read_text())
+version = version_data["version"]
+title = version_data["releaseTitle"]
+channel = version_data["channel"]
+display_name = version_data["displayName"]
+base_name = version_data["artifactBaseName"]
+repository = version_data["repository"]
+
+patterns = [
+    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}\.x86_64$"), {"platform": "linux", "architecture": "x86_64", "type": "binary"}),
+    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}\.arm64$"), {"platform": "linux", "architecture": "arm64", "type": "binary"}),
+    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}\.exe$"), {"platform": "windows", "architecture": "x86_64", "type": "binary"}),
+    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}-android-arm64\.apk$"), {"platform": "android", "architecture": "arm64-v8a", "type": "apk"}),
+    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}-linux-x86_64\.zip$"), {"platform": "linux", "architecture": "x86_64", "type": "bundle"}),
+    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}-linux-arm64\.zip$"), {"platform": "linux", "architecture": "arm64", "type": "bundle"}),
+    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}-windows-x86_64\.zip$"), {"platform": "windows", "architecture": "x86_64", "type": "bundle"}),
+    (re.compile(rf"^{re.escape(base_name)}-{re.escape(version)}-source\.zip$"), {"platform": "source", "architecture": "any", "type": "source"}),
+]
+
+files = sorted(p for p in dist.iterdir() if p.is_file() and p.name not in {"manifest.json", "checksums.txt"})
+if not files:
+    raise SystemExit("dist does not contain release assets")
+
+assets = []
+unexpected = []
+for file_path in files:
+    matched = None
+    for pattern, metadata in patterns:
+        if pattern.match(file_path.name):
+            matched = dict(metadata)
+            break
+    if matched is None:
+        unexpected.append(file_path.name)
+        continue
+    matched["name"] = file_path.name
+    matched["size"] = file_path.stat().st_size
+    matched["sha256"] = ""
+    assets.append(matched)
+
+if unexpected:
+    raise SystemExit(f"unexpected release files: {', '.join(unexpected)}")
+
+for asset in assets:
+    path = dist / asset["name"]
+    import hashlib
+    asset["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+
+manifest = {
+    "project": display_name,
+    "repository": repository,
+    "version": version,
+    "channel": channel,
+    "title": title,
+    "assets": assets,
+}
+
+(dist / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+
+checksum_lines = []
+for path in sorted(p for p in dist.iterdir() if p.is_file()):
+    import hashlib
+    checksum_lines.append(f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}")
+(dist / "checksums.txt").write_text("\n".join(checksum_lines) + "\n")
+PY
+
+printf 'release-metadata-ok\n'

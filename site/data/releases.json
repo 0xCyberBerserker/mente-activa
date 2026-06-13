@@ -1,0 +1,78 @@
+{
+  "project": "Mente Activa",
+  "repository": "0xCyberBerserker/mente-activa",
+  "releases": [
+    {
+      "version": "1.0.0",
+      "tag": "v1.0.0",
+      "name": "Mente Activa 1.0.0",
+      "publishedAt": "2026-06-13T20:18:03Z",
+      "url": "https://github.com/0xCyberBerserker/mente-activa/releases/tag/v1.0.0",
+      "assets": [
+        {
+          "name": "mente-activa-1.0.0.arm64",
+          "platform": "Linux",
+          "architecture": "ARM64",
+          "kind": "Binary",
+          "downloadUrl": "https://github.com/0xCyberBerserker/mente-activa/releases/download/v1.0.0/mente-activa-1.0.0.arm64",
+          "sha256": "848ba5739d51dc9aaae8abdb42ff360c3f7cd23f3ed1247aaa3a781202b69753",
+          "size": 64965544
+        },
+        {
+          "name": "mente-activa-1.0.0-linux-arm64.zip",
+          "platform": "Linux",
+          "architecture": "ARM64",
+          "kind": "ZIP",
+          "downloadUrl": "https://github.com/0xCyberBerserker/mente-activa/releases/download/v1.0.0/mente-activa-1.0.0-linux-arm64.zip",
+          "sha256": "4bf6570357e16025a54dd286b169969965a31adff68b62572d00842210fe9b0d",
+          "size": 30955783
+        },
+        {
+          "name": "mente-activa-1.0.0.x86_64",
+          "platform": "Linux",
+          "architecture": "x86_64",
+          "kind": "Binary",
+          "downloadUrl": "https://github.com/0xCyberBerserker/mente-activa/releases/download/v1.0.0/mente-activa-1.0.0.x86_64",
+          "sha256": "cc6b8cc8e717f5232ea40942eb3ae213335080de3cfa2a8911b8f52160b28a2c",
+          "size": 71257928
+        },
+        {
+          "name": "mente-activa-1.0.0-linux-x86_64.zip",
+          "platform": "Linux",
+          "architecture": "x86_64",
+          "kind": "ZIP",
+          "downloadUrl": "https://github.com/0xCyberBerserker/mente-activa/releases/download/v1.0.0/mente-activa-1.0.0-linux-x86_64.zip",
+          "sha256": "7dda78b9e784a306093c3e74b0e2b1cecda6f647984d7977157b59381c7d81c7",
+          "size": 32068167
+        },
+        {
+          "name": "mente-activa-1.0.0-source.zip",
+          "platform": "Source",
+          "architecture": "Any",
+          "kind": "Source ZIP",
+          "downloadUrl": "https://github.com/0xCyberBerserker/mente-activa/releases/download/v1.0.0/mente-activa-1.0.0-source.zip",
+          "sha256": "3727dbf379892c084250086229c56d7383abaa748c74584829a7438d4f0d3e89",
+          "size": 126838390
+        },
+        {
+          "name": "mente-activa-1.0.0.exe",
+          "platform": "Windows",
+          "architecture": "x86_64",
+          "kind": "Binary",
+          "downloadUrl": "https://github.com/0xCyberBerserker/mente-activa/releases/download/v1.0.0/mente-activa-1.0.0.exe",
+          "sha256": "1725ccc7778b1823547085b4085239fc2b79cc9b73783c7d0bd02e1b249db39b",
+          "size": 104775480
+        },
+        {
+          "name": "mente-activa-1.0.0-windows-x86_64.zip",
+          "platform": "Windows",
+          "architecture": "x86_64",
+          "kind": "ZIP",
+          "downloadUrl": "https://github.com/0xCyberBerserker/mente-activa/releases/download/v1.0.0/mente-activa-1.0.0-windows-x86_64.zip",
+          "sha256": "1faa4612f7484e87e0c304ca730f9a36c3de803be6b6e99a52d9c537e3bd4ba7",
+          "size": 38709984
+        }
+      ]
+    }
+  ]
+}

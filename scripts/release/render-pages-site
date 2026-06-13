@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+cd "$repo_root"
+mkdir -p "$repo_root/build"
+: > "$repo_root/build/.gdignore"
+
+release_json="${1:-$repo_root/site/data/releases.json}"
+release_markdown="${2:-$repo_root/site/data/releases.md}"
+output_dir="${3:-$repo_root/build/pages}"
+
+rm -rf "$output_dir"
+mkdir -p "$output_dir"
+cp -a "$repo_root/site/." "$output_dir/"
+cp "$release_json" "$output_dir/data/releases.json"
+cp "$release_markdown" "$output_dir/releases.md"
+find "$output_dir" -type f -name '*.import' -delete
+
+printf '%s\n' "$output_dir"

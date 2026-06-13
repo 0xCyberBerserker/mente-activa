@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+cd "$repo_root"
+
+test -f project.godot
+command -v godot >/dev/null
+command -v jq >/dev/null
+
+godot --editor --recovery-mode --headless --path "$repo_root" --quit >/dev/null
+
+jq -e '
+  .version and
+  .godotVersion and
+  .artifactBaseName and
+  .repository and
+  .targets["linux-x86_64"].preset and
+  .targets["linux-arm64"].preset and
+  .targets["windows-x86_64"].preset and
+  .targets["android-arm64"].preset
+' VERSION.json >/dev/null
+
+grep -q 'name="Linux/X11"' export_presets.cfg
+grep -q 'name="Linux ARM64"' export_presets.cfg
+grep -q 'name="Windows Desktop"' export_presets.cfg
+grep -q 'name="Android"' export_presets.cfg
+
+printf 'validation-ok\n'

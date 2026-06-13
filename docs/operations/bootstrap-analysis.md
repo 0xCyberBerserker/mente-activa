@@ -13,20 +13,21 @@
 
 ### Forma del proyecto
 
-- Motor: Godot `4.6` declarado en [`project.godot`](./project.godot)
-- Escena principal resuelta a [`Escena/control.tscn`](./Escena/control.tscn)
+- Motor: Godot `4.6` declarado en [`project.godot`](../../project.godot)
+- Escena principal resuelta a [`Escena/control.tscn`](../../Escena/control.tscn)
 - Modelo mixto:
   - scripts `.gd` para lógica de minijuegos
   - scripts `.torch` de Orchestrator para flujo de menús
 - Estructura base:
-  - [`Escena/`](./Escena)
-  - [`script/`](./script)
-  - [`addons/orchestrator/`](./addons/orchestrator)
+  - [`Escena/`](../../Escena)
+  - [`script/`](../../script)
+  - [`addons/orchestrator/`](../../addons/orchestrator)
 
 ### Estado de export
 
-- Presets existentes en [`export_presets.cfg`](./export_presets.cfg):
+- Presets existentes en [`export_presets.cfg`](../../export_presets.cfg):
   - `Linux/X11`
+  - `Linux ARM64`
   - `Windows Desktop`
   - `Android`
 - El preset Android usa `Gradle`
@@ -35,8 +36,8 @@
 ### Riesgos del repositorio
 
 - Hay artefactos generados mezclados con fuente:
-  - [`mente-activa.pck`](./mente-activa.pck)
-  - [`ejecutar/`](./ejecutar)
+  - `mente-activa.pck`
+  - `ejecutar/`
 - `orchestrator` mete binarios vendorizados de varias plataformas
 - El proyecto requería saneado de UID del theme compartido
 
@@ -64,20 +65,21 @@
 
 ### Project shape
 
-- Engine: Godot `4.6` declared in [`project.godot`](./project.godot)
-- Main scene resolved to [`Escena/control.tscn`](./Escena/control.tscn)
+- Engine: Godot `4.6` declared in [`project.godot`](../../project.godot)
+- Main scene resolved to [`Escena/control.tscn`](../../Escena/control.tscn)
 - Mixed runtime model:
   - `.gd` scripts for minigame logic
   - Orchestrator `.torch` scripts for menu flow
 - Base structure:
-  - [`Escena/`](./Escena)
-  - [`script/`](./script)
-  - [`addons/orchestrator/`](./addons/orchestrator)
+  - [`Escena/`](../../Escena)
+  - [`script/`](../../script)
+  - [`addons/orchestrator/`](../../addons/orchestrator)
 
 ### Export status
 
-- Existing presets in [`export_presets.cfg`](./export_presets.cfg):
+- Existing presets in [`export_presets.cfg`](../../export_presets.cfg):
   - `Linux/X11`
+  - `Linux ARM64`
   - `Windows Desktop`
   - `Android`
 - The Android preset uses `Gradle`
@@ -86,8 +88,8 @@
 ### Repository risks
 
 - Generated artifacts are mixed with source:
-  - [`mente-activa.pck`](./mente-activa.pck)
-  - [`ejecutar/`](./ejecutar)
+  - `mente-activa.pck`
+  - `ejecutar/`
 - `orchestrator` vendors multi-platform binaries
 - The project required shared theme UID cleanup
 

@@ -1,0 +1,32 @@
+{
+  "activity": "complete_proverb",
+  "language": "es",
+  "audience_note": "Actividad de lenguaje figurado y cultura popular. Puede no ser adecuada para todos los perfiles.",
+  "questions": [
+    {
+      "prompt": "A quien madruga...",
+      "options": ["mucho abarca", "Dios le ayuda", "todo se le escapa"],
+      "answer": 1
+    },
+    {
+      "prompt": "Más vale pájaro en mano...",
+      "options": ["que ciento volando", "que dormir temprano", "si el río suena"],
+      "answer": 0
+    },
+    {
+      "prompt": "En boca cerrada...",
+      "options": ["no entran moscas", "caben dos refranes", "todo es ganancia"],
+      "answer": 0
+    },
+    {
+      "prompt": "No dejes para mañana...",
+      "options": ["lo que puedas vender", "lo que puedas callar", "lo que puedas hacer hoy"],
+      "answer": 2
+    },
+    {
+      "prompt": "El que mucho abarca...",
+      "options": ["poco aprieta", "más temprano llega", "menos tropieza"],
+      "answer": 0
+    }
+  ]
+}

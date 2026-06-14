@@ -26,10 +26,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 60.0
-offset_top = 40.0
-offset_right = -60.0
-offset_bottom = -40.0
+offset_left = 72.0
+offset_top = 48.0
+offset_right = -72.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -47,24 +47,26 @@ theme_override_constants/separation = 6
 
 [node name="Title" type="Label" parent="MarginContainer/Card/Content/Header"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Parejas del Día a Día"
+theme_override_font_sizes/font_size = 38
+text = "Parejas cotidianas"
 autowrap_mode = 3
 
 [node name="MatchesLabel" type="Label" parent="MarginContainer/Card/Content/Header"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 26
 text = "Parejas: 0/6"
 horizontal_alignment = 0
 vertical_alignment = 1
 
 [node name="InstructionsLabel" type="Label" parent="MarginContainer/Card/Content"]
 layout_mode = 2
-text = "Selecciona dos cartas relacionadas entre sí."
+theme_override_font_sizes/font_size = 24
+text = "Busca dos elementos que vayan juntos."
 autowrap_mode = 3
 
 [node name="FeedbackLabel" type="Label" parent="MarginContainer/Card/Content"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = ""
 autowrap_mode = 3
 
@@ -77,72 +79,84 @@ theme_override_constants/v_separation = 14
 columns = 4
 
 [node name="Button1" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 1"
 
 [node name="Button2" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 2"
 
 [node name="Button3" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 3"
 
 [node name="Button4" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 4"
 
 [node name="Button5" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 5"
 
 [node name="Button6" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 6"
 
 [node name="Button7" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 7"
 
 [node name="Button8" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 8"
 
 [node name="Button9" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 9"
 
 [node name="Button10" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 10"
 
 [node name="Button11" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Carta 11"
 
 [node name="Button12" type="Button" parent="MarginContainer/Card/Content/GridContainer"]
+custom_minimum_size = Vector2(0, 88)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -155,13 +169,13 @@ theme_override_constants/separation = 20
 [node name="BackButton" type="Button" parent="MarginContainer/Card/Content/Footer"]
 layout_mode = 2
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(0, 56)
-text = "Volver al menú"
+custom_minimum_size = Vector2(0, 66)
+text = "Volver"
 
 [node name="RestartButton" type="Button" parent="MarginContainer/Card/Content/Footer"]
 layout_mode = 2
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 66)
 text = "Reiniciar"
 
 [connection signal="pressed" from="MarginContainer/Card/Content/Footer/BackButton" to="." method="_on_back_pressed"]

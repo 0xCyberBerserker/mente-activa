@@ -6,12 +6,25 @@
 
 ## Español
 
-Mente Activa es una aplicación educativa en Godot 4 orientada a ejercicios cortos de memoria, lenguaje y atención.
+Mente Activa es una aplicación educativa creada con Godot 4 para actividades cortas de memoria, lenguaje y atención.
 
-- Estado: `v1.0.0` estable
-- Plataformas objetivo de release: Linux `x86_64`, Linux `ARM64`, Windows `x86_64`, Android `arm64-v8a`
-- Releases manuales: no se ejecutan Actions con commits ordinarios
+Está pensada para personas mayores, familias, cuidadores y personas que prefieren actividades breves, visualmente claras y sin presión de tiempo.
+
+No es un producto médico, no es una herramienta diagnóstica y no debe presentarse como terapia, tratamiento ni promesa de beneficio clínico.
+
+- Estado actual: MVP temprano
+- Plataformas objetivo: Linux `x86_64`, Raspberry Pi / Linux `ARM64`, Windows `x86_64`, Android `arm64-v8a`
+- Releases manuales: los commits ordinarios no lanzan GitHub Actions
 - Descargas e índice público: GitHub Releases y GitHub Pages
+
+### Principios de diseño
+
+- Ejercicios cortos y fáciles de retomar
+- Botones grandes y cómodos para táctil y escritorio
+- Sin presión de tiempo
+- Feedback amable y no humillante
+- Accesibilidad visual con contraste alto y márgenes amplios
+- Posibilidad de uso acompañado por familia o cuidador si hace falta
 
 ### Créditos
 
@@ -39,12 +52,25 @@ Made with ❤️
 
 ## English
 
-Mente Activa is a Godot 4 educational application focused on short memory, language, and attention exercises.
+Mente Activa is an educational Godot 4 application built around short memory, language, and attention activities.
 
-- Status: stable `v1.0.0`
-- Release targets: Linux `x86_64`, Linux `ARM64`, Windows `x86_64`, Android `arm64-v8a`
-- Releases stay manual: ordinary commits do not trigger Actions
+It is designed for older adults, families, caregivers, and people who benefit from calm, short, visually clear activities.
+
+It is not a medical product, not a diagnostic tool, and it must not be presented as therapy, treatment, or a clinical-benefit claim.
+
+- Current status: early MVP
+- Target platforms: Linux `x86_64`, Raspberry Pi / Linux `ARM64`, Windows `x86_64`, Android `arm64-v8a`
+- Releases stay manual: ordinary commits do not trigger GitHub Actions
 - Downloads and public index: GitHub Releases and GitHub Pages
+
+### Design principles
+
+- Short activities
+- Large, comfortable buttons
+- No time pressure
+- Kind feedback
+- Visual accessibility
+- Can be used with family or caregiver support when needed
 
 ### Credits
 

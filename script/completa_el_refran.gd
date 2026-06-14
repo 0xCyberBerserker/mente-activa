@@ -2,6 +2,8 @@ extends Control
 
 const MENU_SCENE_PATH := "res://Escena/EscenalistaMinijuego.tscn"
 
+# Refranes can work well for older adults or people familiar with popular language,
+# but may be less suitable for every neurodevelopment profile or cultural context.
 const QUESTIONS := [
 	{
 		"prompt": "A quien madruga...",
@@ -81,10 +83,10 @@ func _on_option_pressed(index: int) -> void:
 
 	if is_correct:
 		_score += 1
-		feedback_label.text = "Correcto."
+		feedback_label.text = "✓ Bien."
 		feedback_label.modulate = Color(0.11, 0.49, 0.2, 1.0)
 	else:
-		feedback_label.text = "Incorrecto. La respuesta correcta era: %s" % option_buttons[correct_index].text
+		feedback_label.text = "Casi. La respuesta era: %s" % option_buttons[correct_index].text
 		feedback_label.modulate = Color(0.69, 0.15, 0.15, 1.0)
 
 	for option_index in option_buttons.size():

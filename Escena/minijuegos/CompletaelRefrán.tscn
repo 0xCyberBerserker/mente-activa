@@ -26,10 +26,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 60.0
-offset_top = 40.0
-offset_right = -60.0
-offset_bottom = -40.0
+offset_left = 72.0
+offset_top = 48.0
+offset_right = -72.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -47,25 +47,26 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/Card/Content/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 36
-text = "Completa el Refrán"
+theme_override_font_sizes/font_size = 38
+text = "Lenguaje: refranes"
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/Card/Content/Header"]
 unique_id = 201
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "Puntuación: 0/0"
 horizontal_alignment = 2
 
 [node name="ProgressLabel" type="Label" parent="MarginContainer/Card/Content"]
 unique_id = 202
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Pregunta 1 de 5"
 
 [node name="PromptLabel" type="Label" parent="MarginContainer/Card/Content"]
 unique_id = 203
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 32
 text = "Cargando refrán..."
 autowrap_mode = 3
 
@@ -79,21 +80,21 @@ alignment = 1
 unique_id = 204
 layout_mode = 2
 size_flags_vertical = 3
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 78)
 text = "Opción A"
 
 [node name="OptionB" type="Button" parent="MarginContainer/Card/Content/Options"]
 unique_id = 205
 layout_mode = 2
 size_flags_vertical = 3
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 78)
 text = "Opción B"
 
 [node name="OptionC" type="Button" parent="MarginContainer/Card/Content/Options"]
 unique_id = 206
 layout_mode = 2
 size_flags_vertical = 3
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 78)
 text = "Opción C"
 
 [node name="FeedbackLabel" type="Label" parent="MarginContainer/Card/Content"]
@@ -111,14 +112,14 @@ theme_override_constants/separation = 20
 unique_id = 208
 layout_mode = 2
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(0, 54)
-text = "Volver al menú"
+custom_minimum_size = Vector2(0, 66)
+text = "Volver"
 
 [node name="NextButton" type="Button" parent="MarginContainer/Card/Content/Footer"]
 unique_id = 209
 layout_mode = 2
 size_flags_horizontal = 3
-custom_minimum_size = Vector2(0, 54)
+custom_minimum_size = Vector2(0, 66)
 text = "Siguiente"
 
 [connection signal="pressed" from="MarginContainer/Card/Content/Options/OptionA" to="." method="_on_option_a_pressed"]

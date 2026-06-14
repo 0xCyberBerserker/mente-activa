@@ -2,14 +2,19 @@ extends Control
 
 const MENU_SCENE_PATH := "res://Escena/EscenalistaMinijuego.tscn"
 const BACK_CARD_TEXT := "?"
+const PAIRS_PER_GAME := 6
 
 const CARD_PAIRS := [
-	["Cafe", "Desayuno"],
+	["Café", "Desayuno"],
 	["Llave", "Puerta"],
-	["Jabon", "Manos"],
+	["Jabón", "Manos"],
 	["Paraguas", "Lluvia"],
 	["Cepillo", "Pelo"],
 	["Almohada", "Dormir"],
+	["Plato", "Comida"],
+	["Zapato", "Pie"],
+	["Libro", "Leer"],
+	["Vaso", "Agua"],
 ]
 
 @onready var matches_label: Label = $MarginContainer/Card/Content/Header/MatchesLabel
@@ -52,8 +57,12 @@ func _setup_game() -> void:
 	_matched_pair_ids.clear()
 	_is_resolving = false
 
-	for pair_index in CARD_PAIRS.size():
-		var pair: Array = CARD_PAIRS[pair_index]
+	var available_pairs: Array = CARD_PAIRS.duplicate()
+	available_pairs.shuffle()
+	var selected_pairs: Array = available_pairs.slice(0, PAIRS_PER_GAME)
+
+	for pair_index in selected_pairs.size():
+		var pair: Array = selected_pairs[pair_index]
 		for text in pair:
 			_deck.append({
 				"pair_id": pair_index,
@@ -63,7 +72,7 @@ func _setup_game() -> void:
 	_deck.shuffle()
 	feedback_label.text = ""
 	feedback_label.modulate = Color(0.18, 0.24, 0.28, 1.0)
-	instructions_label.text = "Selecciona dos cartas relacionadas entre sí."
+	instructions_label.text = "Busca dos elementos que vayan juntos."
 	restart_button.text = "Reiniciar"
 	_update_matches_label()
 	_refresh_board()
@@ -118,23 +127,23 @@ func _resolve_selection() -> void:
 
 		_matched_pair_ids.append(pair_id)
 		_matched_indices.append_array(_selected_indices)
-		feedback_label.text = "Pareja conseguida. Esa pareja ya queda cerrada."
+		feedback_label.text = "✓ Bien. Esta pareja ya está completa."
 		feedback_label.modulate = Color(0.11, 0.49, 0.2, 1.0)
-		instructions_label.text = "Muy bien. Ahora busca otra pareja distinta."
+		instructions_label.text = "Ahora puedes buscar otra pareja."
 		_selected_indices.clear()
 		_update_matches_label()
 		_is_resolving = false
 		_refresh_board()
 
 		if _matched_indices.size() == _deck.size():
-			feedback_label.text = "Has completado todas las parejas."
+			feedback_label.text = "✓ Has completado todas las parejas."
 			feedback_label.modulate = Color(0.15, 0.24, 0.55, 1.0)
-			instructions_label.text = "Juego terminado."
+			instructions_label.text = "Actividad terminada."
 			restart_button.text = "Jugar otra vez"
 	else:
-		feedback_label.text = "No forman pareja. Intenta otra vez."
+		feedback_label.text = "↺ Casi. Prueba con otra pareja."
 		feedback_label.modulate = Color(0.69, 0.15, 0.15, 1.0)
-		instructions_label.text = "Selecciona dos cartas relacionadas entre sí."
+		instructions_label.text = "Busca dos elementos que vayan juntos."
 		_refresh_board()
 		await get_tree().create_timer(0.9).timeout
 		_selected_indices.clear()
@@ -143,7 +152,7 @@ func _resolve_selection() -> void:
 
 
 func _update_matches_label() -> void:
-	matches_label.text = "Parejas: %d/%d" % [_matched_indices.size() / 2, CARD_PAIRS.size()]
+	matches_label.text = "Parejas: %d/%d" % [_matched_indices.size() / 2, PAIRS_PER_GAME]
 
 
 func _on_restart_pressed() -> void:

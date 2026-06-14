@@ -30,7 +30,7 @@ No es un producto médico, no es una herramienta diagnóstica y no debe presenta
 
 ### Créditos
 
-- Idea original y creación inicial: [rabudev](https://github.com/rabudev)
+- Idea original y creación inicial: [rabu-dev](https://github.com/rabudev)
 - Colaborador actual y mantenimiento del repositorio: [0xCyberBerserker](https://github.com/0xCyberBerserker)
 
 ### Documentación clave
@@ -80,7 +80,7 @@ It is not a medical product, not a diagnostic tool, and it must not be presented
 
 ### Credits
 
-- Original concept and initial creation: [rabudev](https://github.com/rabudev)
+- Original concept and initial creation: [rabu-dev](https://github.com/rabudev)
 - Current collaborator and repository maintenance: [0xCyberBerserker](https://github.com/0xCyberBerserker)
 
 ### Key documentation

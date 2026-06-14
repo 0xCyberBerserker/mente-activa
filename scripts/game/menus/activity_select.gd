@@ -30,7 +30,7 @@ func _apply_responsive_layout() -> void:
 	margin_container.offset_top = 24.0 if compact_layout else 52.0
 	margin_container.offset_right = -24.0 if compact_layout else -72.0
 	margin_container.offset_bottom = -24.0 if compact_layout else -52.0
-	actions.theme_override_constants.separation = 18 if compact_layout else 24
+	actions.add_theme_constant_override("separation", 18 if compact_layout else 24)
 	daily_pairs_button.custom_minimum_size.y = 80.0 if compact_layout else 86.0
 	proverbs_button.custom_minimum_size.y = 80.0 if compact_layout else 86.0
 	back_button.custom_minimum_size.y = 70.0 if compact_layout else 76.0

@@ -212,8 +212,12 @@ jobs:
           EOF
           mapfile -t assets < <(find dist -maxdepth 1 -type f | sort)
           latest_flag=""
+          prerelease_flag=""
           if [ "${{ inputs.make_latest }}" = "true" ]; then
             latest_flag="--latest"
+          fi
+          if [ "${{ needs.prepare.outputs.channel }}" = "alpha" ]; then
+            prerelease_flag="--prerelease"
           fi
           if gh release view "v${{ needs.prepare.outputs.version }}" --repo "${{ needs.prepare.outputs.repository }}" >/dev/null 2>&1; then
             gh release upload "v${{ needs.prepare.outputs.version }}" "${assets[@]}" \
@@ -233,6 +237,7 @@ jobs:
               --repo "${{ needs.prepare.outputs.repository }}" \
               --title "${{ needs.prepare.outputs.release_title }}" \
               --notes-file "$notes_file" \
+              $prerelease_flag \
               $latest_flag
             exit 0
           fi
@@ -240,6 +245,7 @@ jobs:
             --repo "${{ needs.prepare.outputs.repository }}" \
             --title "${{ needs.prepare.outputs.release_title }}" \
             --notes-file "$notes_file" \
+            $prerelease_flag \
             $latest_flag
 
       - name: Generate release index

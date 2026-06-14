@@ -11,6 +11,15 @@
   --shadow: 0 24px 80px rgba(44, 34, 24, 0.12);
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+:target {
+  scroll-margin-top: 24px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -55,7 +64,8 @@ a {
 .status-band,
 .platform-strip,
 .hero-actions,
-.hero-meta {
+.hero-meta,
+.topbar-links {
   display: flex;
 }
 
@@ -68,6 +78,13 @@ a {
 .topbar {
   align-items: center;
   margin-bottom: 44px;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.topbar-links {
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
 .eyebrow,

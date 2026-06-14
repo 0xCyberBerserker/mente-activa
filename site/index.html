@@ -12,10 +12,15 @@
   </head>
   <body>
     <div class="page-shell">
-      <header class="hero">
+      <header class="hero" id="inicio">
         <nav class="topbar">
           <span class="eyebrow">Mente Activa</span>
-          <a class="nav-link" href="./releases.md">Releases.md</a>
+          <div class="topbar-links">
+            <a class="nav-link" href="#descargas">Descargas</a>
+            <a class="nav-link" href="#accesibilidad">Accesibilidad</a>
+            <a class="nav-link" href="#english">English</a>
+            <a class="nav-link" href="./releases.md">Releases.md</a>
+          </div>
         </nav>
         <div class="hero-grid">
           <section class="hero-copy">
@@ -43,7 +48,7 @@
       </header>
 
       <main>
-        <section class="status-band">
+        <section class="status-band" id="estado">
           <article>
             <span class="label">Estado</span>
             <strong id="latest-version">Cargando</strong>
@@ -58,7 +63,7 @@
           </article>
         </section>
 
-        <section class="section">
+        <section class="section" id="plataformas">
           <div class="section-heading">
             <p class="section-kicker">Plataformas</p>
             <h2>Descargas claras por sistema operativo.</h2>
@@ -71,7 +76,7 @@
           </div>
         </section>
 
-        <section class="section releases-section">
+        <section class="section releases-section" id="descargas">
           <div class="section-heading">
             <p class="section-kicker">Versiones</p>
             <h2>Índice público de descargas.</h2>
@@ -100,12 +105,12 @@
         </section>
 
         <section class="section narrative">
-          <div class="narrative-card">
+          <div class="narrative-card" id="accesibilidad">
             <p class="section-kicker">Principios</p>
             <h2>Breve, legible y sin castigo.</h2>
             <p>La experiencia prioriza botones grandes, buen contraste, ausencia de temporizadores agresivos y feedback amable. No es un producto médico ni una herramienta diagnóstica.</p>
           </div>
-          <div class="narrative-card narrative-card-english">
+          <div class="narrative-card narrative-card-english" id="english">
             <p class="section-kicker">English</p>
             <h2>Short English summary.</h2>
             <p>Mente Activa is an accessible educational Godot app with short, calm activities and manually curated releases for Linux, Windows, Raspberry Pi, and Android.</p>

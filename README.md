@@ -30,7 +30,7 @@ No es un producto médico, no es una herramienta diagnóstica y no debe presenta
 
 ### Créditos
 
-- Idea original y creación inicial: [rabu-dev](https://github.com/rabudev)
+- Idea original y creación inicial: [rabu-dev](https://github.com/rabu-dev)
 - Colaborador actual y mantenimiento del repositorio: [0xCyberBerserker](https://github.com/0xCyberBerserker)
 
 ### Documentación clave

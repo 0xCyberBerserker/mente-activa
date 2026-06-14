@@ -111,6 +111,7 @@ corner_radius_bottom_left = 18
 
 [resource]
 Button/colors/font_color = Color(0.180392, 0.145098, 0.0745098, 1)
+Button/colors/font_disabled_color = Color(0.341176, 0.337255, 0.305882, 1)
 Button/colors/font_hover_color = Color(0.180392, 0.145098, 0.0745098, 1)
 Button/colors/font_pressed_color = Color(0.180392, 0.145098, 0.0745098, 1)
 Button/colors/font_focus_color = Color(0.180392, 0.145098, 0.0745098, 1)
@@ -119,8 +120,10 @@ Button/styles/focus = SubResource("StyleBoxFlat_focus")
 Button/styles/hover = SubResource("StyleBoxFlat_primary_hover")
 Button/styles/normal = SubResource("StyleBoxFlat_primary")
 Button/styles/pressed = SubResource("StyleBoxFlat_primary_pressed")
+Button/styles/disabled = SubResource("StyleBoxFlat_secondary")
 Button/constants/h_separation = 10
 Label/colors/font_color = Color(0.14, 0.22, 0.28, 1)
+Label/colors/font_shadow_color = Color(1, 1, 1, 0.08)
 Label/font_sizes/font_size = 24
 Panel/styles/panel = SubResource("StyleBoxFlat_background")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_card")

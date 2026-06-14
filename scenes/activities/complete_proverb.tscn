@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2u03j1vub0r4"]
 
-[ext_resource type="Script" uid="uid://c5ndsndl2quqw" path="res://script/completa_el_refran.gd" id="1_refran"]
-[ext_resource type="Theme" path="res://main_theme.tres" id="2_theme"]
+[ext_resource type="Script" uid="uid://c5ndsndl2quqw" path="res://scripts/game/activities/complete_proverb.gd" id="1_refran"]
+[ext_resource type="Theme" path="res://assets/themes/main_theme.tres" id="2_theme"]
 
-[node name="CompletaElRefran" type="Control" unique_id=1409213587]
+[node name="CompleteProverb" type="Control" unique_id=1409213587]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,7 +44,7 @@ theme_override_constants/separation = 24
 [node name="Header" type="HBoxContainer" parent="MarginContainer/Card/Content"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer/Card/Content/Header"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/Card/Content/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 38

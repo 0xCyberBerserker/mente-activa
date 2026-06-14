@@ -1,0 +1,13 @@
+Required Notice: Copyright (c) 2026 Mente Activa contributors
+
+This repository uses `PolyForm Noncommercial 1.0.0` as its main project
+license. See `LICENSE` for the canonical license text.
+
+Repository-specific licensing guidance:
+
+- Non-commercial public use follows `LICENSE`.
+- Commercial use requires a separate agreement. See
+  `COMMERCIAL-LICENSE.md`.
+- Practical questions are covered in `LICENSE-FAQ.md`.
+- Vendored third-party material in `addons/orchestrator/` keeps its own
+  upstream `Apache-2.0` license and notices.

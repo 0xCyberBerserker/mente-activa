@@ -4,7 +4,7 @@
 
 ### Política
 
-- Las releases estables son manuales.
+- Las releases del canal actual son manuales.
 - Ningún workflow se ejecuta con commits ordinarios.
 - La publicación se dispara solo mediante `workflow_dispatch`.
 - La GitHub Pages pública se actualiza desde la misma release manual.
@@ -42,7 +42,7 @@ Objetivo actual:
 6. regenerar índice Markdown/JSON de releases
 7. desplegar GitHub Pages
 
-La validación en CI usa `recovery-mode` del editor, pero el export real usa `godot --headless --export-release` porque los scripts `.torch` de Orchestrator no deben degradarse durante el empaquetado.
+La validación en CI usa `recovery-mode` del editor, pero el export real usa `godot --headless --export-release` para preservar el comportamiento real del proyecto durante el empaquetado.
 Los artefactos desktop soportados son los `.zip` completos. Los binarios sueltos no se publican porque el runtime necesita sidecars nativos del addon `orchestrator` en el mismo directorio.
 La APK Android de esta fase se publica sin firma para no bloquear la release en una keystore todavía no formalizada.
 
@@ -50,7 +50,7 @@ La APK Android de esta fase se publica sin firma para no bloquear la release en 
 
 ### Policy
 
-- Stable releases are manual.
+- Releases for the current channel are manual.
 - No workflow runs on ordinary commits.
 - Publication is triggered only through `workflow_dispatch`.
 - The public GitHub Pages site is refreshed from the same manual release.
@@ -88,6 +88,6 @@ Current target:
 6. regenerate the Markdown/JSON release index
 7. deploy GitHub Pages
 
-CI validation uses editor `recovery-mode`, but the real export uses `godot --headless --export-release` because Orchestrator `.torch` scripts must not be degraded during packaging.
+CI validation uses editor `recovery-mode`, but the real export uses `godot --headless --export-release` to preserve the real project runtime during packaging.
 Supported desktop deliverables are the complete `.zip` bundles. Standalone binaries are not published because the runtime needs native `orchestrator` sidecars in the same directory.
 The Android APK in this phase is published unsigned so releases do not depend on a keystore that is not yet formalized.

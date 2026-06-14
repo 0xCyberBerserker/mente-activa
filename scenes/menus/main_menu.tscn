@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://2bg18qkxlkb2"]
+[gd_scene load_steps=6 format=3 uid="uid://2bg18qkxlkb2"]
 
-[ext_resource type="Script" path="res://script/menuprincipal.torch" id="1_k0r78"]
-[ext_resource type="Theme" path="res://main_theme.tres" id="2_theme"]
+[ext_resource type="Script" path="res://scripts/game/menus/main_menu.gd" id="1_main_menu"]
+[ext_resource type="Theme" path="res://assets/themes/main_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/branding/logoma.png" id="3_logo"]
 
 [sub_resource type="SystemFont" id="SystemFont_k0r78"]
 subpixel_positioning = 0
@@ -14,7 +15,7 @@ shadow_size = 4
 shadow_color = Color(0, 0, 0, 0.25)
 shadow_offset = Vector2(2, 2)
 
-[node name="Control" type="Control" unique_id=1422823092]
+[node name="MainMenu" type="Control" unique_id=1422823092]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_theme")
-script = ExtResource("1_k0r78")
+script = ExtResource("1_main_menu")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
@@ -44,23 +45,31 @@ offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Content" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 40
+theme_override_constants/separation = 28
 alignment = 1
 
-[node name="LogoContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="BrandBlock" type="VBoxContainer" parent="MarginContainer/Content"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/LogoContainer"]
+[node name="Logo" type="TextureRect" parent="MarginContainer/Content/BrandBlock"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/Content/BrandBlock"]
 layout_mode = 2
 text = "Mente Activa"
 label_settings = SubResource("LabelSettings_title")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Subtitle" type="Label" parent="MarginContainer/VBoxContainer/LogoContainer"]
+[node name="SubtitleLabel" type="Label" parent="MarginContainer/Content/BrandBlock"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.827451, 0.85098, 0.882353, 1)
 theme_override_font_sizes/font_size = 28
@@ -69,23 +78,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="MenuButtons" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(460, 0)
+[node name="Actions" type="VBoxContainer" parent="MarginContainer/Content"]
+custom_minimum_size = Vector2(420, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 24
 
-[node name="Practicar" type="Button" parent="MarginContainer/VBoxContainer/MenuButtons"]
+[node name="StartButton" type="Button" parent="MarginContainer/Content/Actions"]
 custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Empezar"
 
-[node name="Cerrar" type="Button" parent="MarginContainer/VBoxContainer/MenuButtons"]
+[node name="ExitButton" type="Button" parent="MarginContainer/Content/Actions"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme_override_font_sizes/font_size = 28
 text = "Salir"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuButtons/Practicar" to="." method="_on_practicar_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/MenuButtons/Cerrar" to="." method="_on_cerrar_pressed"]
+[connection signal="pressed" from="MarginContainer/Content/Actions/StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/Content/Actions/ExitButton" to="." method="_on_exit_pressed"]

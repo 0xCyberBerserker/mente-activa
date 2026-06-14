@@ -57,6 +57,8 @@ for release in json.loads(releases_path.read_text()):
         "version": release_version,
         "tag": tag,
         "name": release.get("name") or tag,
+        "channel": "alpha" if release.get("prerelease") else "stable",
+        "isPrerelease": bool(release.get("prerelease")),
         "publishedAt": release.get("published_at"),
         "url": release.get("html_url"),
         "assets": [],
@@ -79,7 +81,7 @@ for release in json.loads(releases_path.read_text()):
             entry["assets"].append(asset_entry)
             rows.append({
                 "version": release_version,
-                "channel": "stable",
+                "channel": "alpha" if release.get("prerelease") else "stable",
                 "platform": platform,
                 "architecture": architecture,
                 "kind": kind,

@@ -14,13 +14,13 @@
 ### Forma del proyecto
 
 - Motor: Godot `4.6` declarado en [`project.godot`](../../project.godot)
-- Escena principal resuelta a [`Escena/control.tscn`](../../Escena/control.tscn)
+- Escena principal resuelta a [`scenes/menus/main_menu.tscn`](../../scenes/menus/main_menu.tscn)
 - Modelo mixto:
   - scripts `.gd` para lógica de minijuegos
   - scripts `.torch` de Orchestrator para flujo de menús
 - Estructura base:
-  - [`Escena/`](../../Escena)
-  - [`script/`](../../script)
+  - [`scenes/`](../../scenes)
+  - [`scripts/game/`](../../scripts/game)
   - [`addons/orchestrator/`](../../addons/orchestrator)
 
 ### Estado de export
@@ -66,13 +66,13 @@
 ### Project shape
 
 - Engine: Godot `4.6` declared in [`project.godot`](../../project.godot)
-- Main scene resolved to [`Escena/control.tscn`](../../Escena/control.tscn)
+- Main scene resolved to [`scenes/menus/main_menu.tscn`](../../scenes/menus/main_menu.tscn)
 - Mixed runtime model:
   - `.gd` scripts for minigame logic
   - Orchestrator `.torch` scripts for menu flow
 - Base structure:
-  - [`Escena/`](../../Escena)
-  - [`script/`](../../script)
+  - [`scenes/`](../../scenes)
+  - [`scripts/game/`](../../scripts/game)
   - [`addons/orchestrator/`](../../addons/orchestrator)
 
 ### Export status

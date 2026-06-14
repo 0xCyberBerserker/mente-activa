@@ -6,6 +6,7 @@
 - [Tabla de versiones](./release/releases.md)
 - [Bootstrap analysis](./operations/bootstrap-analysis.md)
 - [Reorganización del repo](./development/repo-organization-review.md)
+- [Estructura del proyecto](./development/project-structure.md)
 - [Política de binarios vendorizados de Orchestrator](./licensing/orchestrator-vendoring.md)
 
 ## English
@@ -14,4 +15,5 @@
 - [Version table](./release/releases.md)
 - [Bootstrap analysis](./operations/bootstrap-analysis.md)
 - [Repository reorganization](./development/repo-organization-review.md)
+- [Project structure](./development/project-structure.md)
 - [Orchestrator vendoring policy](./licensing/orchestrator-vendoring.md)

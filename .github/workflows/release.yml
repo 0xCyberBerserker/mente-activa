@@ -11,7 +11,7 @@ on:
       make_latest:
         description: "Mark release as latest"
         required: true
-        default: true
+        default: false
         type: boolean
 
 permissions:
@@ -31,6 +31,7 @@ jobs:
       godot_version: ${{ steps.meta.outputs.godot_version }}
       release_title: ${{ steps.meta.outputs.release_title }}
       repository: ${{ steps.meta.outputs.repository }}
+      channel: ${{ steps.meta.outputs.channel }}
     steps:
       - name: Checkout
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
@@ -53,6 +54,7 @@ jobs:
           echo "godot_version=$(jq -r '.godotVersion' VERSION.json)" >> "$GITHUB_OUTPUT"
           echo "release_title=$(jq -r '.releaseTitle' VERSION.json)" >> "$GITHUB_OUTPUT"
           echo "repository=$(jq -r '.repository' VERSION.json)" >> "$GITHUB_OUTPUT"
+          echo "channel=$(jq -r '.channel' VERSION.json)" >> "$GITHUB_OUTPUT"
 
   build-desktop:
     needs: prepare
@@ -203,8 +205,8 @@ jobs:
         run: |
           set -euo pipefail
           notes_file="$(mktemp)"
-          cat > "$notes_file" <<'EOF'
-          Stable manual release for Mente Activa.
+          cat > "$notes_file" <<EOF
+          Manual ${{ needs.prepare.outputs.channel }} release for Mente Activa.
 
           Use the packaged ZIP artifacts on desktop platforms for the complete runtime bundle.
           EOF

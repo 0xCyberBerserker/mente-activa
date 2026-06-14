@@ -99,6 +99,12 @@ tbody td {
   flex: 1;
 }
 
+.narrative {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
 .hero-copy h1,
 .section h2,
 .narrative-card h2 {
@@ -255,8 +261,38 @@ tbody td {
   vertical-align: top;
 }
 
+.hash {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.86rem;
+}
+
+.narrative-card-english {
+  background: rgba(22, 32, 42, 0.04);
+}
+
 tbody tr:first-child td {
   border-top: 1px solid var(--line);
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .status-band {
+    flex-direction: column;
+  }
+
+  .narrative {
+    grid-template-columns: 1fr;
+  }
 }
 
 .hash {

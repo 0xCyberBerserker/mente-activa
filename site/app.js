@@ -22,6 +22,7 @@ function renderRows(releases) {
       rows.push(`
         <tr>
           <td>${release.version}</td>
+          <td>${release.channel || "stable"}</td>
           <td>${asset.platform}</td>
           <td>${asset.architecture}</td>
           <td>${asset.kind}</td>
@@ -33,7 +34,7 @@ function renderRows(releases) {
   });
 
   if (!rows.length) {
-    body.innerHTML = '<tr><td colspan="6">No hay releases públicas todavía.</td></tr>';
+    body.innerHTML = '<tr><td colspan="7">No hay releases públicas todavía.</td></tr>';
     return;
   }
 
@@ -42,6 +43,7 @@ function renderRows(releases) {
 
 async function loadReleases() {
   const latestVersionNode = document.getElementById("latest-version");
+  const latestChannelNode = document.getElementById("latest-channel");
   const latestReleaseLink = document.getElementById("latest-release-link");
 
   try {
@@ -54,16 +56,19 @@ async function loadReleases() {
     renderRows(releases);
     if (releases.length > 0) {
       latestVersionNode.textContent = releases[0].version;
+      latestChannelNode.textContent = releases[0].channel || "stable";
       latestReleaseLink.href = releases[0].url || fallbackReleaseUrl;
     } else {
       latestVersionNode.textContent = "Sin release publicada";
+      latestChannelNode.textContent = "Sin datos";
       latestReleaseLink.href = fallbackReleaseUrl;
     }
   } catch (error) {
     latestVersionNode.textContent = "Sin datos";
+    latestChannelNode.textContent = "Sin datos";
     latestReleaseLink.href = fallbackReleaseUrl;
     document.getElementById("release-table-body").innerHTML =
-      '<tr><td colspan="6">No se pudo cargar el índice de releases.</td></tr>';
+      '<tr><td colspan="7">No se pudo cargar el índice de releases.</td></tr>';
   }
 }
 

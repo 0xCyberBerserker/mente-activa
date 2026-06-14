@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Mente Activa"
-run/main_scene="uid://2bg18qkxlkb2"
+run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-boot_splash/image="uid://btxpayv13vum2"
+boot_splash/image="res://assets/branding/logoma.png"
 
 [display]
 

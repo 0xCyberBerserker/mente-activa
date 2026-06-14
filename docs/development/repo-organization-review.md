@@ -4,13 +4,14 @@
 
 ### Resumen
 
-El repositorio ya adopta una estructura más profesional: scripts por dominio, documentación separada por función y una frontera más clara entre fuente y outputs de release. Aun así, esta guía sigue siendo el recordatorio de disciplina operativa.
+El repositorio ya adopta una estructura más profesional: `assets/`, `scenes/`, `scripts/game/`, `scripts/release/`, `scripts/validate/`, `docs/` y `site/` tienen ahora responsabilidades más claras. Aun así, esta guía sigue siendo el recordatorio de disciplina operativa.
 
 ### Prioridad 1
 
 - mantener separados fuente y artefactos generados
 - mantener `build/`, `dist/` y `ejecutar/` fuera del árbol versionado normal
 - sostener la política de binarios vendorizados de `orchestrator`
+- evitar cualquier regreso a rutas legacy como `Escena/` o `script/`
 
 ### Prioridad 2
 
@@ -39,13 +40,14 @@ El repositorio ya adopta una estructura más profesional: scripts por dominio, d
 
 ### Summary
 
-The repository now follows a more professional layout: domain-based scripts, function-based documentation, and a clearer boundary between source and release outputs. This note remains the operational discipline checkpoint.
+The repository now follows a more professional layout: `assets/`, `scenes/`, `scripts/game/`, `scripts/release/`, `scripts/validate/`, `docs/`, and `site/` each have clearer responsibilities. This note remains the operational discipline checkpoint.
 
 ### Priority 1
 
 - keep source and generated artifacts separated
 - keep `build/`, `dist/`, and `ejecutar/` outside the normal versioned tree
 - preserve the vendored binary policy for `orchestrator`
+- prevent any return to legacy paths such as `Escena/` or `script/`
 
 ### Priority 2
 

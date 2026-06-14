@@ -3,6 +3,7 @@
 ## Español
 
 - [Proceso de release](./release/process.md)
+- [Politica de versionado](./release/versioning-policy.md)
 - [Tabla de versiones](./release/releases.md)
 - [Bootstrap analysis](./operations/bootstrap-analysis.md)
 - [Reorganización del repo](./development/repo-organization-review.md)
@@ -13,6 +14,7 @@
 ## English
 
 - [Release process](./release/process.md)
+- [Versioning policy](./release/versioning-policy.md)
 - [Version table](./release/releases.md)
 - [Bootstrap analysis](./operations/bootstrap-analysis.md)
 - [Repository reorganization](./development/repo-organization-review.md)

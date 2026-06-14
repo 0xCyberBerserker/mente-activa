@@ -7,8 +7,10 @@ cd "$repo_root"
 test -f project.godot
 command -v godot >/dev/null
 command -v jq >/dev/null
+command -v python3 >/dev/null
 
 godot --editor --recovery-mode --headless --path "$repo_root" --quit >/dev/null
+python3 "$repo_root/scripts/validate/activity-data"
 
 jq -e '
   .version and

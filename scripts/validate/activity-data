@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+import json
+import sys
+from pathlib import Path
+
+
+def fail(message: str) -> None:
+    print(message, file=sys.stderr)
+    raise SystemExit(1)
+
+
+def load_json(path: Path) -> dict:
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        fail(f"missing file: {path}")
+    except json.JSONDecodeError as exc:
+        fail(f"invalid json in {path}: {exc}")
+    if not isinstance(payload, dict):
+        fail(f"invalid root object in {path}")
+    return payload
+
+
+def validate_pairs(path: Path) -> None:
+    payload = load_json(path)
+    pairs = payload.get("pairs")
+    if not isinstance(pairs, list) or not pairs:
+        fail(f"missing or empty pairs array in {path}")
+    for index, item in enumerate(pairs):
+        if not isinstance(item, dict):
+            fail(f"pair #{index} is not an object in {path}")
+        left = str(item.get("left", "")).strip()
+        right = str(item.get("right", "")).strip()
+        if not left or not right:
+            fail(f"pair #{index} must include non-empty left/right in {path}")
+
+
+def validate_proverbs(path: Path) -> None:
+    payload = load_json(path)
+    questions = payload.get("questions")
+    if not isinstance(questions, list) or not questions:
+        fail(f"missing or empty questions array in {path}")
+    for index, item in enumerate(questions):
+        if not isinstance(item, dict):
+            fail(f"question #{index} is not an object in {path}")
+        prompt = str(item.get("prompt", "")).strip()
+        options = item.get("options")
+        answer = item.get("answer")
+        if not prompt:
+            fail(f"question #{index} must include prompt in {path}")
+        if not isinstance(options, list) or len(options) < 2:
+            fail(f"question #{index} must include at least two options in {path}")
+        if any(not str(option).strip() for option in options):
+            fail(f"question #{index} includes an empty option in {path}")
+        if not isinstance(answer, int) or answer < 0 or answer >= len(options):
+            fail(f"question #{index} has invalid answer index in {path}")
+
+
+def main() -> None:
+    repo_root = Path(__file__).resolve().parents[2]
+    validate_pairs(repo_root / "data/activities/pairs_es.json")
+    validate_proverbs(repo_root / "data/activities/refranes_es.json")
+    print("activity-data-ok")
+
+
+if __name__ == "__main__":
+    main()

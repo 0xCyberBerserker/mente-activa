@@ -40,7 +40,7 @@ No. Este proyecto es `source-available` y `free for non-commercial use`. No es s
 
 ### ¿Qué hago si quiero una licencia comercial?
 
-Contacta con: `commercial-license@example.com`
+Contacta con: `jcarlosgl96@proton.me`
 
 ### Aviso prudente
 
@@ -86,7 +86,7 @@ No. This project is `source-available` and `free for non-commercial use`. It is 
 
 ### What should I do if I want a commercial license?
 
-Contact: `commercial-license@example.com`
+Contact: `jcarlosgl96@proton.me`
 
 ### Cautious notice
 

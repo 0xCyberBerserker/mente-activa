@@ -8,6 +8,8 @@
 
 Mente Activa es una aplicación educativa creada con Godot 4 para actividades cortas de memoria, lenguaje y atención.
 
+> Source-available. Free for non-commercial use. Commercial license required.
+
 Está pensada para personas mayores, familias, cuidadores y personas que prefieren actividades breves, visualmente claras y sin presión de tiempo.
 
 No es un producto médico, no es una herramienta diagnóstica y no debe presentarse como terapia, tratamiento ni promesa de beneficio clínico.
@@ -55,6 +57,8 @@ Made with ❤️
 ## English
 
 Mente Activa is an educational Godot 4 application built around short memory, language, and attention activities.
+
+> Source-available. Free for non-commercial use. Commercial license required.
 
 It is designed for older adults, families, caregivers, and people who benefit from calm, short, visually clear activities.
 

@@ -33,7 +33,7 @@ La licencia comercial se negociará por separado.
 
 ### Contacto
 
-`commercial-license@example.com`
+`jcarlosgl96@proton.me`
 
 ### Aviso prudente
 
@@ -72,7 +72,7 @@ Commercial terms must be agreed separately.
 
 ### Contact
 
-`commercial-license@example.com`
+`jcarlosgl96@proton.me`
 
 ### Cautious notice
 

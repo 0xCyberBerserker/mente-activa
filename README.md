@@ -47,7 +47,7 @@ El uso personal, familiar, educativo y no comercial sigue permitido. El uso con 
 - [LICENSE](./LICENSE)
 - [NOTICE](./NOTICE)
 - [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)
-- [LICENSE-FAQ.md](./LICENSE-FAQ.md)
+- [docs/licensing/license-faq.md](./docs/licensing/license-faq.md)
 - `addons/orchestrator/` conserva su licencia upstream `Apache-2.0`
 
 Made with ❤️
@@ -95,7 +95,7 @@ Personal, family, educational, and non-commercial use remains allowed. Commercia
 - [LICENSE](./LICENSE)
 - [NOTICE](./NOTICE)
 - [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)
-- [LICENSE-FAQ.md](./LICENSE-FAQ.md)
+- [docs/licensing/license-faq.md](./docs/licensing/license-faq.md)
 - `addons/orchestrator/` retains its upstream `Apache-2.0` license
 
 Made with ❤️

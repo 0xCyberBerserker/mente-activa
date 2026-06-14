@@ -8,6 +8,6 @@ Repository-specific licensing guidance:
 - Non-commercial public use follows `LICENSE`.
 - Commercial use requires a separate agreement. See
   `COMMERCIAL-LICENSE.md`.
-- Practical questions are covered in `LICENSE-FAQ.md`.
+- Practical questions are covered in `docs/licensing/license-faq.md`.
 - Vendored third-party material in `addons/orchestrator/` keeps its own
   upstream `Apache-2.0` license and notices.

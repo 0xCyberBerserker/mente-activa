@@ -1,8 +1,8 @@
 {
-  "version": "1.0.0",
-  "channel": "stable",
+  "version": "0.0.1",
+  "channel": "alpha",
   "godotVersion": "4.6.3-stable",
-  "releaseTitle": "Mente Activa 1.0.0",
+  "releaseTitle": "Mente Activa 0.0.1 Alpha",
   "displayName": "Mente Activa",
   "repository": "0xCyberBerserker/mente-activa",
   "licenseModel": "source-available",

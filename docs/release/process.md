@@ -7,7 +7,7 @@
 - Las releases del canal actual son manuales.
 - Ningún workflow se ejecuta con commits ordinarios.
 - La publicación se dispara solo mediante `workflow_dispatch`.
-- La GitHub Pages pública se actualiza desde la misma release manual.
+- La GitHub Pages pública puede actualizarse desde la release manual o desde la pipeline manual `Deploy Site`.
 
 ### Artefactos de release
 
@@ -22,6 +22,7 @@ Objetivo actual:
 - `checksums.txt`
 - tabla bilingüe de versiones por sistema operativo
 - GitHub Pages estática generada desde datos reales de GitHub Releases
+- pipeline manual separada para publicar solo la web sin recompilar el juego
 
 ### Precondiciones
 
@@ -42,6 +43,11 @@ Objetivo actual:
 6. regenerar índice Markdown/JSON de releases
 7. desplegar GitHub Pages
 
+Pipeline alternativa:
+1. lanzar `Deploy Site`
+2. decidir si se regenera la tabla pública desde GitHub Releases con `refresh_release_index`
+3. publicar la web sin exportar ni recompilar Godot
+
 La validación en CI usa `recovery-mode` del editor, pero el export real usa `godot --headless --export-release` para preservar el comportamiento real del proyecto durante el empaquetado.
 Los artefactos desktop soportados son los `.zip` completos. Los binarios sueltos no se publican porque el runtime necesita sidecars nativos del addon `orchestrator` en el mismo directorio.
 La APK Android de esta fase se publica sin firma para no bloquear la release en una keystore todavía no formalizada.
@@ -53,7 +59,7 @@ La APK Android de esta fase se publica sin firma para no bloquear la release en 
 - Releases for the current channel are manual.
 - No workflow runs on ordinary commits.
 - Publication is triggered only through `workflow_dispatch`.
-- The public GitHub Pages site is refreshed from the same manual release.
+- The public GitHub Pages site can be refreshed from the manual release workflow or from the dedicated `Deploy Site` workflow.
 
 ### Release artifacts
 
@@ -68,6 +74,7 @@ Current target:
 - `checksums.txt`
 - bilingual version table by operating system
 - static GitHub Pages output generated from real GitHub Releases data
+- separate manual pipeline to publish only the website without rebuilding the game
 
 ### Preconditions
 
@@ -87,6 +94,11 @@ Current target:
 5. publish the release
 6. regenerate the Markdown/JSON release index
 7. deploy GitHub Pages
+
+Alternative pipeline:
+1. run `Deploy Site`
+2. choose whether `refresh_release_index` should rebuild the public table from GitHub Releases
+3. publish the website without exporting or rebuilding Godot
 
 CI validation uses editor `recovery-mode`, but the real export uses `godot --headless --export-release` to preserve the real project runtime during packaging.
 Supported desktop deliverables are the complete `.zip` bundles. Standalone binaries are not published because the runtime needs native `orchestrator` sidecars in the same directory.

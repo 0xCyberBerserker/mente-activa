@@ -46,7 +46,7 @@ const FALLBACK_PROVERBS := [
 
 
 static func load_pairs_catalog() -> Array[Dictionary]:
-	var payload := _read_json(AppRoutes.PAIRS_DATA)
+	var payload: Variant = _read_json(AppRoutes.PAIRS_DATA)
 	if payload is Dictionary and payload.get("pairs") is Array:
 		var pairs := _normalize_pairs(payload["pairs"])
 		if not pairs.is_empty():
@@ -55,7 +55,7 @@ static func load_pairs_catalog() -> Array[Dictionary]:
 
 
 static func load_proverb_questions() -> Array[Dictionary]:
-	var payload := _read_json(AppRoutes.PROVERBS_DATA)
+	var payload: Variant = _read_json(AppRoutes.PROVERBS_DATA)
 	if payload is Dictionary and payload.get("questions") is Array:
 		var questions := _normalize_questions(payload["questions"])
 		if not questions.is_empty():
@@ -95,7 +95,7 @@ static func _normalize_questions(items: Array) -> Array[Dictionary]:
 		if item is not Dictionary:
 			continue
 		var prompt := str(item.get("prompt", "")).strip_edges()
-		var options := item.get("options", [])
+		var options: Array = item.get("options", [])
 		var answer := int(item.get("answer", -1))
 		if prompt.is_empty() or options is not Array or options.size() < 2:
 			continue

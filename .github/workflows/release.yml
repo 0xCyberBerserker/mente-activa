@@ -95,7 +95,7 @@ jobs:
         run: scripts/release/export-target "${{ matrix.target }}"
 
       - name: Upload target assets
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: release-${{ matrix.target }}
           path: build/release/assets/${{ matrix.target }}/*
@@ -153,7 +153,7 @@ jobs:
         run: scripts/release/export-target android-arm64
 
       - name: Upload Android assets
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: release-android-arm64
           path: build/release/assets/android-arm64/*
@@ -175,7 +175,7 @@ jobs:
           sudo apt-get install -y gh jq zip python3
 
       - name: Download built assets
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           path: build/release/collected
           pattern: release-*

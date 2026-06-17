@@ -1,7 +1,7 @@
 extends Control
 
-const MATCH_SCENE_PATH := "res://Escena/minijuegos/MatchDayAndDay.tscn"
-const REFRAN_SCENE_PATH := "res://Escena/minijuegos/CompletaelRefrán.tscn"
+const MATCH_SCENE_PATH := "res://scene/minijuegos/MatchDayAndDay.tscn"
+const REFRAN_SCENE_PATH := "res://scene/minijuegos/CompletaelRefrán.tscn"
 
 
 func _on_mg_1_pressed() -> void:
@@ -13,7 +13,7 @@ func _on_mg_2_pressed() -> void:
 
 
 func _on_volver_pressed() -> void:
-	_change_scene("res://Escena/control.tscn")
+	_change_scene("res://scene/MenuPrincipal.tscn")
 
 
 func _change_scene(scene_path: String) -> void:

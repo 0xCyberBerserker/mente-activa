@@ -1,0 +1,91 @@
+{
+	"categories": [
+		{
+			"uuid": "c09cd9c8-8808-4a02-9180-fb31fd3f5560",
+			"title": "Tareas",
+			"color": "006eff"
+		},
+		{
+			"uuid": "6cd62cdd-2f88-4b26-8fe5-501b2a873105",
+			"title": "diseño",
+			"color": "38ff00"
+		},
+		{
+			"uuid": "44a2e9ed-acf0-4f30-b059-7149b8b67a78",
+			"title": "Fix",
+			"color": "ff0000"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "cedf324b-2cb5-46ce-8393-fcd4e57c326b",
+			"title": "Todo",
+			"tasks": [
+				"8ab4f135-b582-4b6d-ba5a-8fa2ed1517a9"
+			]
+		},
+		{
+			"uuid": "98407529-ff2f-4297-97d9-f8a312e1bec0",
+			"title": "Doing",
+			"tasks": [
+				"54a78a92-2199-4348-a05f-159f03122d6a"
+			]
+		},
+		{
+			"uuid": "16c364a0-8a5a-4911-97d9-a55952ce19ff",
+			"title": "Fix",
+			"tasks": [
+				"24dd9b57-6fbe-41d3-bdf7-84d13b1f5a1a"
+			]
+		},
+		{
+			"uuid": "986435f3-27bf-4a05-a13a-fe693c81678e",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "24dd9b57-6fbe-41d3-bdf7-84d13b1f5a1a",
+			"title": "minijuego",
+			"description": "hay mirar minijuegos y añadir nuevos\n",
+			"category": "c09cd9c8-8808-4a02-9180-fb31fd3f5560",
+			"steps": []
+		},
+		{
+			"uuid": "54a78a92-2199-4348-a05f-159f03122d6a",
+			"title": "Poner pintogramas",
+			"description": "relacionar las pai con esto",
+			"category": "6cd62cdd-2f88-4b26-8fe5-501b2a873105",
+			"steps": []
+		},
+		{
+			"uuid": "8ab4f135-b582-4b6d-ba5a-8fa2ed1517a9",
+			"title": "api de arasaac",
+			"description": "https://arasaac.org/developers/api",
+			"category": "c09cd9c8-8808-4a02-9180-fb31fd3f5560",
+			"steps": [
+				{
+					"details": "implementar la api ",
+					"done": false
+				}
+			]
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"cedf324b-2cb5-46ce-8393-fcd4e57c326b"
+			],
+			[
+				"98407529-ff2f-4297-97d9-f8a312e1bec0"
+			],
+			[
+				"16c364a0-8a5a-4911-97d9-a55952ce19ff"
+			],
+			[
+				"986435f3-27bf-4a05-a13a-fe693c81678e"
+			]
+		]
+	}
+}

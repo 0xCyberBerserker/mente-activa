@@ -1,6 +1,6 @@
 extends Control
 
-const MENU_SCENE_PATH := "res://Escena/EscenalistaMinijuego.tscn"
+const MENU_SCENE_PATH := "res://scene/EscenalistaMinijuego.tscn"
 const BACK_CARD_TEXT := "?"
 
 const CARD_PAIRS := [

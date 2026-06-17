@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bxb50wrtcbag"]
 
-[ext_resource type="Theme" uid="uid://cf4h20o3brilb" path="res://main_theme.tres" id="2_theme"]
+[ext_resource type="Theme" uid="uid://cf4h20o3brilb" path="res://assets/themes/main_theme.tres" id="2_theme"]
 [ext_resource type="Script" uid="uid://dj4nkl7m4ppx" path="res://script/escenalista_minijuego.gd" id="2_xr781"]
 
 [node name="EscenalistaMinijuego" type="Control" node_paths=PackedStringArray("mg_1", "mg_2", "volver")]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drptaopwehkw"
-path="res://.godot/imported/logoma.svg-888b8b52f1b0a56913829157d0a2f94d.ctex"
+uid="uid://cdt54fje3045y"
+path="res://.godot/imported/adaptive_background_432x432.png-d61b33a7adb684fabd2403bf055d697e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://logoma.svg"
-dest_files=["res://.godot/imported/logoma.svg-888b8b52f1b0a56913829157d0a2f94d.ctex"]
+source_file="res://assets/branding/android/adaptive_background_432x432.png"
+dest_files=["res://.godot/imported/adaptive_background_432x432.png-d61b33a7adb684fabd2403bf055d697e.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

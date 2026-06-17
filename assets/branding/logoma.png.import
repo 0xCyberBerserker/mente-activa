@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btxpayv13vum2"
-path="res://.godot/imported/logoma.png-6b3d144fbc8c17eaf531b7b81442ccc5.ctex"
+path="res://.godot/imported/logoma.png-2d601b8af940805aae6d8b3af83c2ba1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://logoma.png"
-dest_files=["res://.godot/imported/logoma.png-6b3d144fbc8c17eaf531b7b81442ccc5.ctex"]
+source_file="res://assets/branding/logoma.png"
+dest_files=["res://.godot/imported/logoma.png-2d601b8af940805aae6d8b3af83c2ba1.ctex"]
 
 [params]
 

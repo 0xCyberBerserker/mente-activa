@@ -6,24 +6,66 @@ on:
       version:
         description: "Version to publish"
         required: true
-        default: "1.0.0"
+        default: "0.0.6"
         type: string
       make_latest:
         description: "Mark release as latest"
         required: true
-        default: true
+        default: false
         type: boolean
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: mente-activa-release-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  release:
+  prepare:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      godot_version: ${{ steps.meta.outputs.godot_version }}
+      release_title: ${{ steps.meta.outputs.release_title }}
+      repository: ${{ steps.meta.outputs.repository }}
+      channel: ${{ steps.meta.outputs.channel }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+      - name: Install metadata tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Validate requested version
+        run: |
+          set -euo pipefail
+          test "${{ inputs.version }}" = "$(jq -r '.version' VERSION.json)"
+
+      - name: Resolve release metadata
+        id: meta
+        run: |
+          set -euo pipefail
+          echo "version=$(jq -r '.version' VERSION.json)" >> "$GITHUB_OUTPUT"
+          echo "godot_version=$(jq -r '.godotVersion' VERSION.json)" >> "$GITHUB_OUTPUT"
+          echo "release_title=$(jq -r '.releaseTitle' VERSION.json)" >> "$GITHUB_OUTPUT"
+          echo "repository=$(jq -r '.repository' VERSION.json)" >> "$GITHUB_OUTPUT"
+          echo "channel=$(jq -r '.channel' VERSION.json)" >> "$GITHUB_OUTPUT"
+
+  build-desktop:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - linux-x86_64
+          - linux-arm64
+          - windows-x86_64
     steps:
       - name: Checkout
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
@@ -31,71 +73,237 @@ jobs:
       - name: Install system tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y curl jq unzip zip xvfb gh
-
-      - name: Validate requested version
-        run: |
-          set -euo pipefail
-          test "${{ inputs.version }}" = "$(jq -r '.version' VERSION.json)"
-
-      - name: Resolve Godot version
-        id: meta
-        run: |
-          set -euo pipefail
-          echo "godot_version=$(jq -r '.godotVersion' VERSION.json)" >> "$GITHUB_OUTPUT"
-          echo "release_title=$(jq -r '.releaseTitle' VERSION.json)" >> "$GITHUB_OUTPUT"
+          sudo apt-get install -y curl jq unzip zip python3 xvfb
 
       - name: Download Godot editor
         run: |
           set -euo pipefail
-          version="${{ steps.meta.outputs.godot_version }}"
+          version="${{ needs.prepare.outputs.godot_version }}"
           curl -fL "https://github.com/godotengine/godot-builds/releases/download/${version}/Godot_v${version}_linux.x86_64.zip" -o godot.zip
           unzip -q godot.zip -d godot-bin
           chmod +x godot-bin/Godot_v${version}_linux.x86_64
           ln -sf "Godot_v${version}_linux.x86_64" godot-bin/godot
           echo "${GITHUB_WORKSPACE}/godot-bin" >> "$GITHUB_PATH"
 
-      - name: Download Linux export templates
-        run: |
-          set -euo pipefail
-          version="${{ steps.meta.outputs.godot_version }}"
-          templates_dir="$HOME/.local/share/godot/export_templates/${version//-/.}"
-          mkdir -p "$templates_dir"
-          curl -fL "https://github.com/godotengine/godot-builds/releases/download/${version}/Godot_v${version}_export_templates.tpz" -o templates.tpz
-          unzip -q templates.tpz -d template-stage
-          cp -f template-stage/templates/linux_* "$templates_dir"/
+      - name: Install export templates
+        run: scripts/release/install-templates
 
       - name: Validate project
-        run: scripts/validate-project
+        run: scripts/validate/project
 
-      - name: Export Linux build
-        run: scripts/export-linux
+      - name: Export target
+        run: scripts/release/export-target "${{ matrix.target }}"
 
-      - name: Package release metadata
-        run: scripts/package-release
+      - name: Upload target assets
+        uses: actions/upload-artifact@v6
+        with:
+          name: release-${{ matrix.target }}
+          path: build/release/assets/${{ matrix.target }}/*
+          if-no-files-found: error
+
+  build-android:
+    needs: prepare
+    runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+      - name: Install system tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl jq unzip zip python3 openjdk-17-jdk xvfb
+
+      - name: Download Godot editor
+        run: |
+          set -euo pipefail
+          version="${{ needs.prepare.outputs.godot_version }}"
+          curl -fL "https://github.com/godotengine/godot-builds/releases/download/${version}/Godot_v${version}_linux.x86_64.zip" -o godot.zip
+          unzip -q godot.zip -d godot-bin
+          chmod +x godot-bin/Godot_v${version}_linux.x86_64
+          ln -sf "Godot_v${version}_linux.x86_64" godot-bin/godot
+          echo "${GITHUB_WORKSPACE}/godot-bin" >> "$GITHUB_PATH"
+
+      - name: Install export templates
+        run: scripts/release/install-templates
+
+      - name: Configure Android SDK
+        run: |
+          set -euo pipefail
+          if [ -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" ]; then
+            sdkmanager_bin="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          elif [ -x "$ANDROID_HOME/cmdline-tools/bin/sdkmanager" ]; then
+            sdkmanager_bin="$ANDROID_HOME/cmdline-tools/bin/sdkmanager"
+          else
+            echo "Android cmdline-tools were not found on the runner" >&2
+            exit 1
+          fi
+          set +o pipefail
+          yes | "$sdkmanager_bin" --licenses >/dev/null
+          set -o pipefail
+          "$sdkmanager_bin" --install "platform-tools" "platforms;android-35" "build-tools;35.0.0" "cmdline-tools;latest" "ndk;27.0.12077973"
+          echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
+          echo "$ANDROID_HOME/build-tools/35.0.0" >> "$GITHUB_PATH"
+
+      - name: Prepare Android signing key
+        env:
+          ANDROID_RELEASE_KEYSTORE_BASE64: ${{ secrets.ANDROID_RELEASE_KEYSTORE_BASE64 }}
+          ANDROID_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEYSTORE_PASSWORD }}
+          ANDROID_RELEASE_KEY_ALIAS: ${{ secrets.ANDROID_RELEASE_KEY_ALIAS }}
+          ANDROID_RELEASE_KEY_PASSWORD: ${{ secrets.ANDROID_RELEASE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          test -n "$ANDROID_RELEASE_KEYSTORE_BASE64"
+          test -n "$ANDROID_RELEASE_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_RELEASE_KEY_ALIAS"
+          test -n "$ANDROID_RELEASE_KEY_PASSWORD"
+          keystore_path="$RUNNER_TEMP/mente-activa-android-release.jks"
+          printf '%s' "$ANDROID_RELEASE_KEYSTORE_BASE64" | base64 -d > "$keystore_path"
+          chmod 600 "$keystore_path"
+          echo "ANDROID_SIGNING_KEYSTORE=$keystore_path" >> "$GITHUB_ENV"
+          echo "ANDROID_SIGNING_KEYSTORE_PASSWORD=$ANDROID_RELEASE_KEYSTORE_PASSWORD" >> "$GITHUB_ENV"
+          echo "ANDROID_SIGNING_KEY_ALIAS=$ANDROID_RELEASE_KEY_ALIAS" >> "$GITHUB_ENV"
+          echo "ANDROID_SIGNING_KEY_PASSWORD=$ANDROID_RELEASE_KEY_PASSWORD" >> "$GITHUB_ENV"
+
+      - name: Validate project
+        run: scripts/validate/project
+
+      - name: Export Android target
+        run: scripts/release/export-target android-arm64
+
+      - name: Upload Android assets
+        uses: actions/upload-artifact@v6
+        with:
+          name: release-android-arm64
+          path: build/release/assets/android-arm64/*
+          if-no-files-found: error
+
+  collect-and-publish:
+    needs:
+      - prepare
+      - build-desktop
+      - build-android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+
+      - name: Install release tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh jq zip python3
+
+      - name: Download built assets
+        uses: actions/download-artifact@v7
+        with:
+          path: build/release/collected
+          pattern: release-*
+          merge-multiple: true
+
+      - name: Assemble dist directory
+        run: |
+          set -euo pipefail
+          rm -rf dist
+          mkdir -p dist
+          find build/release/collected -maxdepth 1 -type f -print0 | while IFS= read -r -d '' file; do
+            cp "$file" dist/
+          done
+
+      - name: Build source archive
+        run: scripts/release/build-source-archive dist
+
+      - name: Validate release layout
+        run: scripts/validate/release-layout dist
+
+      - name: Build manifest and checksums
+        run: scripts/release/build-release-metadata dist
 
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          notes_file="$(mktemp)"
+          cat > "$notes_file" <<EOF
+          Manual ${{ needs.prepare.outputs.channel }} release for Mente Activa.
+
+          Use the packaged ZIP artifacts on desktop platforms for the complete runtime bundle.
+          EOF
+          mapfile -t assets < <(find dist -maxdepth 1 -type f | sort)
           latest_flag=""
+          prerelease_flag=""
           if [ "${{ inputs.make_latest }}" = "true" ]; then
             latest_flag="--latest"
           fi
-          if gh release view "v${{ inputs.version }}" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            gh release upload "v${{ inputs.version }}" dist/* \
-              --repo "$GITHUB_REPOSITORY" \
+          if [ "${{ needs.prepare.outputs.channel }}" = "alpha" ]; then
+            prerelease_flag="--prerelease"
+          fi
+          if gh release view "v${{ needs.prepare.outputs.version }}" --repo "${{ needs.prepare.outputs.repository }}" >/dev/null 2>&1; then
+            gh release upload "v${{ needs.prepare.outputs.version }}" "${assets[@]}" \
+              --repo "${{ needs.prepare.outputs.repository }}" \
               --clobber
-            gh release edit "v${{ inputs.version }}" \
-              --repo "$GITHUB_REPOSITORY" \
-              --title "${{ steps.meta.outputs.release_title }}" \
-              --notes "First stable manual release for Mente Activa." \
+            for stale_asset in \
+              "orchestrator.linux.64.release.so" \
+              "mente-activa-${{ needs.prepare.outputs.version }}.arm64" \
+              "mente-activa-${{ needs.prepare.outputs.version }}.x86_64" \
+              "mente-activa-${{ needs.prepare.outputs.version }}.exe"
+            do
+              gh release delete-asset "v${{ needs.prepare.outputs.version }}" "$stale_asset" \
+                --repo "${{ needs.prepare.outputs.repository }}" \
+                --yes || true
+            done
+            gh release edit "v${{ needs.prepare.outputs.version }}" \
+              --repo "${{ needs.prepare.outputs.repository }}" \
+              --title "${{ needs.prepare.outputs.release_title }}" \
+              --notes-file "$notes_file" \
+              $prerelease_flag \
               $latest_flag
             exit 0
           fi
-          gh release create "v${{ inputs.version }}" dist/* \
-            --repo "$GITHUB_REPOSITORY" \
-            --title "${{ steps.meta.outputs.release_title }}" \
-            --notes "First stable manual release for Mente Activa." \
+          gh release create "v${{ needs.prepare.outputs.version }}" "${assets[@]}" \
+            --repo "${{ needs.prepare.outputs.repository }}" \
+            --title "${{ needs.prepare.outputs.release_title }}" \
+            --notes-file "$notes_file" \
+            $prerelease_flag \
             $latest_flag
+
+      - name: Generate release index
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ needs.prepare.outputs.repository }}
+        run: |
+          set -euo pipefail
+          scripts/release/render-release-index \
+            "${{ needs.prepare.outputs.repository }}" \
+            build/release/releases.md \
+            build/release/releases.json \
+            build/release/pages-releases.md
+
+      - name: Render GitHub Pages site
+        run: |
+          set -euo pipefail
+          scripts/release/render-pages-site \
+            build/release/releases.json \
+            build/release/pages-releases.md \
+            build/pages
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: build/pages
+
+  deploy-pages:
+    needs: collect-and-publish
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

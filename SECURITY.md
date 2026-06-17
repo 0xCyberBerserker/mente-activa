@@ -23,7 +23,7 @@ Usa primero canales privados de mantenimiento cuando existan.
 
 - Las releases deben crearse manualmente.
 - Los artefactos generados deben salir de scripts reproducibles en este repositorio.
-- Cada release estable debe publicar checksums.
+- Cada release publicada debe incluir checksums.
 - Secretos como keystores o credenciales Android no deben entrar en Git.
 
 ### Prioridades de revisión
@@ -56,7 +56,7 @@ Use private maintainer channels first when available.
 
 - Releases must be created manually.
 - Generated artifacts must come from reproducible scripts in this repository.
-- Every stable release should publish checksums.
+- Every published release should include checksums.
 - Secrets such as Android keystores or credentials must never be committed to Git.
 
 ### Review priorities

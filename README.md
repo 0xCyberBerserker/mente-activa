@@ -1,145 +1,105 @@
 # Mente Activa
 
 <p align="center">
-  <img src="logoma.png" alt="Mente Activa logo" width="180">
+  <img src="assets/branding/logoma.png" alt="Mente Activa logo" width="180">
 </p>
 
 ## Español
 
-Mente Activa es un proyecto educativo en Godot 4 centrado en minijuegos cortos para entrenar memoria, lenguaje y atención.
+Mente Activa es una aplicación educativa creada con Godot 4 para actividades cortas de memoria, lenguaje y atención.
 
-### Branding
+> Source-available. Free for non-commercial use. Commercial license required.
 
-- Logo principal del proyecto: [`logoma.png`](/home/aesir/Documentos/mente-activa/logoma.png)
-- Variante vectorial disponible: [`logoma.svg`](/home/aesir/Documentos/mente-activa/logoma.svg)
+Está pensada para personas mayores, familias, cuidadores y personas que prefieren actividades breves, visualmente claras y sin presión de tiempo.
+
+No es un producto médico, no es una herramienta diagnóstica y no debe presentarse como terapia, tratamiento ni promesa de beneficio clínico.
+
+- Estado actual: alpha `0.0.6`, MVP temprano
+- Plataformas objetivo: Linux `x86_64`, Raspberry Pi / Linux `ARM64`, Windows `x86_64`, Android `arm64-v8a`
+- Releases manuales: los commits ordinarios no lanzan GitHub Actions
+- Descargas e índice público: GitHub Releases y GitHub Pages
+
+### Principios de diseño
+
+- Ejercicios cortos y fáciles de retomar
+- Botones grandes y cómodos para táctil y escritorio
+- Sin presión de tiempo
+- Feedback amable y no humillante
+- Accesibilidad visual con contraste alto y márgenes amplios
+- Posibilidad de uso acompañado por familia o cuidador si hace falta
 
 ### Créditos
 
 - Idea original y creación inicial: [rabu-dev](https://github.com/rabu-dev)
 - Colaborador actual y mantenimiento del repositorio: [0xCyberBerserker](https://github.com/0xCyberBerserker)
 
-La definición exacta de roles podrá ajustarse más adelante. Esta atribución queda reflejada desde la primera release estable.
+### Documentación clave
 
-### Alcance actual
-
-- Menú principal implementado con scripts `.torch` de Orchestrator
-- Minijuegos implementados en GDScript
-- UI compartida basada en tema
-- Proyecto Godot `4.6.x` con el addon `orchestrator` vendorizado
-
-### Estructura del repositorio
-
-- [`Escena/`](/home/aesir/Documentos/mente-activa/Escena): escenas Godot
-- [`script/`](/home/aesir/Documentos/mente-activa/script): GDScript y scripts de Orchestrator
-- [`addons/orchestrator/`](/home/aesir/Documentos/mente-activa/addons/orchestrator): addon y binarios vendorizados
-- [`docs/`](/home/aesir/Documentos/mente-activa/docs): documentación operativa y de mantenimiento
-- [`scripts/`](/home/aesir/Documentos/mente-activa/scripts): helpers reproducibles para local y CI
-
-### Requisitos
-
-- Godot `4.6.3`
-- Export templates de la misma versión
-- Para Android: JDK + Android SDK configurados en el editor de Godot
-
-### Validación local
-
-```bash
-scripts/validate-project
-```
-
-### Export Linux
-
-```bash
-scripts/install-linux-templates
-scripts/export-linux
-```
-
-Los artefactos se escriben en `dist/`.
-
-### Releases
-
-- La automatización de release es manual.
-- No se ejecuta ninguna GitHub Action con commits normales.
-- La release solo se lanza desde `Actions -> Manual Release`.
-
-El workflow exporta la build Linux de escritorio, empaqueta metadatos de release y publica checksums.
-
-### Seguridad
-
-Consulta [SECURITY.md](/home/aesir/Documentos/mente-activa/SECURITY.md).
+- Proceso de release: [docs/release/process.md](./docs/release/process.md)
+- Tabla de versiones: [docs/release/releases.md](./docs/release/releases.md)
+- Índice documental: [docs/README.md](./docs/README.md)
+- Seguridad: [SECURITY.md](./SECURITY.md)
 
 ### Licencia
 
-Este repositorio usa licencia [MIT](/home/aesir/Documentos/mente-activa/LICENSE), apta para uso comercial y open source.
+Este proyecto es `source-available` y no es open source aprobado por OSI.
+
+El uso personal, familiar, educativo y no comercial sigue permitido. El uso con ánimo de lucro o dentro de actividad económica requiere licencia comercial previa, incluyendo residencias privadas, clínicas privadas, empresas, SaaS, consultoras y servicios de pago.
+
+- [LICENSE](./LICENSE)
+- [NOTICE](./NOTICE)
+- [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)
+- [docs/licensing/license-faq.md](./docs/licensing/license-faq.md)
+- `addons/orchestrator/` conserva su licencia upstream `Apache-2.0`
 
 Made with ❤️
 
 ## English
 
-Mente Activa is a Godot 4 educational project focused on short minigames for memory, language, and attention training.
+Mente Activa is an educational Godot 4 application built around short memory, language, and attention activities.
 
-### Branding
+> Source-available. Free for non-commercial use. Commercial license required.
 
-- Primary project logo: [`logoma.png`](/home/aesir/Documentos/mente-activa/logoma.png)
-- Vector variant available: [`logoma.svg`](/home/aesir/Documentos/mente-activa/logoma.svg)
+It is designed for older adults, families, caregivers, and people who benefit from calm, short, visually clear activities.
+
+It is not a medical product, not a diagnostic tool, and it must not be presented as therapy, treatment, or a clinical-benefit claim.
+
+- Current status: early MVP, alpha `0.0.6`
+- Target platforms: Linux `x86_64`, Raspberry Pi / Linux `ARM64`, Windows `x86_64`, Android `arm64-v8a`
+- Releases stay manual: ordinary commits do not trigger GitHub Actions
+- Downloads and public index: GitHub Releases and GitHub Pages
+
+### Design principles
+
+- Short activities
+- Large, comfortable buttons
+- No time pressure
+- Kind feedback
+- Visual accessibility
+- Can be used with family or caregiver support when needed
 
 ### Credits
 
-- Original concept and initial creation: [rabu-dev](https://github.com/rabu-dev)
+- Original concept and initial creation: [rabu-dev](https://github.com/rabudev)
 - Current collaborator and repository maintenance: [0xCyberBerserker](https://github.com/0xCyberBerserker)
 
-Role naming can be refined later. This attribution is kept explicit from the first stable release onward.
+### Key documentation
 
-### Current scope
-
-- Main menu implemented with Orchestrator `.torch` scripts
-- Minigames implemented in GDScript
-- Shared theme-based UI
-- Godot `4.6.x` project with a vendored `orchestrator` addon
-
-### Repository layout
-
-- [`Escena/`](/home/aesir/Documentos/mente-activa/Escena): Godot scenes
-- [`script/`](/home/aesir/Documentos/mente-activa/script): GDScript and Orchestrator scripts
-- [`addons/orchestrator/`](/home/aesir/Documentos/mente-activa/addons/orchestrator): vendored addon binaries and metadata
-- [`docs/`](/home/aesir/Documentos/mente-activa/docs): operations and maintenance docs
-- [`scripts/`](/home/aesir/Documentos/mente-activa/scripts): reproducible local and CI helpers
-
-### Requirements
-
-- Godot `4.6.3`
-- Matching export templates for the same version
-- For Android: JDK + Android SDK configured in the Godot editor
-
-### Local validation
-
-```bash
-scripts/validate-project
-```
-
-### Linux export
-
-```bash
-scripts/install-linux-templates
-scripts/export-linux
-```
-
-Artifacts are written to `dist/`.
-
-### Releases
-
-- Release automation is manual.
-- No GitHub Action runs on normal commits.
-- A release is triggered only from `Actions -> Manual Release`.
-
-The workflow exports the Linux desktop build, packages release metadata, and publishes checksums.
-
-### Security
-
-See [SECURITY.md](/home/aesir/Documentos/mente-activa/SECURITY.md).
+- Release process: [docs/release/process.md](./docs/release/process.md)
+- Version table: [docs/release/releases.md](./docs/release/releases.md)
+- Documentation index: [docs/README.md](./docs/README.md)
+- Security: [SECURITY.md](./SECURITY.md)
 
 ### License
 
-This repository uses the [MIT](/home/aesir/Documentos/mente-activa/LICENSE) license, suitable for commercial use and open source distribution.
+This project is `source-available` and not OSI-approved open source.
+
+Personal, family, educational, and non-commercial use remains allowed. Commercial or profit-oriented use requires a prior commercial license, including private care homes, private clinics, companies, SaaS providers, consultancies, and paid-service operators.
+
+- [LICENSE](./LICENSE)
+- [NOTICE](./NOTICE)
+- [COMMERCIAL-LICENSE.md](./COMMERCIAL-LICENSE.md)
+- [docs/licensing/license-faq.md](./docs/licensing/license-faq.md)
+- `addons/orchestrator/` retains its upstream `Apache-2.0` license
 
 Made with ❤️

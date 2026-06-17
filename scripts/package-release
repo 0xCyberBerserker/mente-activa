@@ -1,62 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$repo_root"
-
-command -v jq >/dev/null
-command -v sha256sum >/dev/null
-command -v zip >/dev/null
-
-version="$(jq -r '.version' VERSION.json)"
-title="$(jq -r '.releaseTitle' VERSION.json)"
-base_name="$(jq -r '.artifactBaseName' VERSION.json)"
-
-mkdir -p dist
-
-source_zip="dist/${base_name}-${version}-source.zip"
-manifest="dist/manifest.json"
-checksums="dist/checksums.txt"
-
-rm -f "$source_zip" "$manifest" "$checksums"
-
-zip -qr "$source_zip" \
-  Escena \
-  script \
-  addons \
-  docs \
-  scripts \
-  project.godot \
-  export_presets.cfg \
-  main_theme.tres \
-  logoma.png \
-  logoma.svg \
-  LICENSE \
-  README.md \
-  SECURITY.md \
-  VERSION.json
-
-python3 <<'PY'
-import json
-from pathlib import Path
-
-repo = Path(".")
-dist = repo / "dist"
-version = json.loads((repo / "VERSION.json").read_text())["version"]
-title = json.loads((repo / "VERSION.json").read_text())["releaseTitle"]
-
-assets = sorted(p.name for p in dist.iterdir() if p.is_file())
-manifest = {
-    "version": version,
-    "title": title,
-    "assets": assets,
-}
-(dist / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
-PY
-
-(
-  cd dist
-  find . -maxdepth 1 -type f -print0 | sort -z | xargs -0 sha256sum > checksums.txt
-)
-
-printf 'package-release-ok\n'
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+"$script_dir/release/build-source-archive"
+"$script_dir/release/build-release-metadata"

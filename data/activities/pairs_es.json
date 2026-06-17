@@ -1,0 +1,17 @@
+{
+  "activity": "pairs_daily_life",
+  "language": "es",
+  "items_per_game": 6,
+  "pairs": [
+    { "left": "Café", "right": "Desayuno", "category": "rutina" },
+    { "left": "Llave", "right": "Puerta", "category": "hogar" },
+    { "left": "Jabón", "right": "Manos", "category": "higiene" },
+    { "left": "Paraguas", "right": "Lluvia", "category": "clima" },
+    { "left": "Cepillo", "right": "Pelo", "category": "higiene" },
+    { "left": "Almohada", "right": "Dormir", "category": "descanso" },
+    { "left": "Plato", "right": "Comida", "category": "mesa" },
+    { "left": "Zapato", "right": "Pie", "category": "ropa" },
+    { "left": "Libro", "right": "Leer", "category": "lectura" },
+    { "left": "Vaso", "right": "Agua", "category": "rutina" }
+  ]
+}

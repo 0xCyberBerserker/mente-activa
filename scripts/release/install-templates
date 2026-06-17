@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/common.sh"
+
+cd "$repo_root"
+require_commands curl unzip jq
+
+godot_version="$(json_get '.godotVersion')"
+target_dir="$(templates_dir)"
+tmpdir="$(mktemp -d)"
+trap 'rm -rf "$tmpdir"' EXIT
+
+curl -fL "https://github.com/godotengine/godot-builds/releases/download/${godot_version}/Godot_v${godot_version}_export_templates.tpz" -o "$tmpdir/templates.tpz"
+unzip -q "$tmpdir/templates.tpz" -d "$tmpdir/unpacked"
+mkdir -p "$target_dir"
+cp -f "$tmpdir"/unpacked/templates/* "$target_dir"/
+
+printf '%s\n' "$target_dir"

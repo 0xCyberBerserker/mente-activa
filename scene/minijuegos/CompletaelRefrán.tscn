@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2u03j1vub0r4"]
+[gd_scene format=3 uid="uid://b2u03j1vub0r4"]
 
 [ext_resource type="Script" uid="uid://c5ndsndl2quqw" path="res://scripts/game/activities/complete_proverb.gd" id="1_refran"]
 [ext_resource type="Theme" path="res://assets/themes/main_theme.tres" id="2_theme"]

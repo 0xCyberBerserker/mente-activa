@@ -17,7 +17,7 @@ Objetivo actual:
 - Linux `x86_64`: bundle `.zip` completo
 - Linux `ARM64`: bundle `.zip` completo
 - Windows `x86_64`: bundle `.zip` completo
-- Android `arm64-v8a`: `.apk` sin firmar
+- Android `arm64-v8a`: `.apk` firmado desde secretos de GitHub Actions
 - source archive
 - `manifest.json`
 - `checksums.txt`
@@ -33,7 +33,7 @@ Objetivo actual:
 - existen presets `Linux/X11`, `Linux ARM64`, `Windows Desktop` y `Android`
 - no hay secretos en el repo
 - las export templates se preparan con `scripts/release/install-templates`
-- Android requiere SDK operativo en CI
+- Android requiere SDK operativo en CI y secretos de firma configurados
 
 ### Flujo
 
@@ -54,7 +54,7 @@ Si `refresh_release_index=false`, la pipeline reutiliza `site/data/releases.json
 
 La validación en CI usa `recovery-mode` del editor, pero el export real usa `godot --headless --export-release` para preservar el comportamiento real del proyecto durante el empaquetado.
 Los artefactos desktop soportados son los `.zip` completos. Los binarios sueltos no se publican porque el runtime necesita sidecars nativos del addon `orchestrator` en el mismo directorio.
-La APK Android de esta fase se publica sin firma para no bloquear la release en una keystore todavía no formalizada.
+La APK Android se firma con una keystore de alpha almacenada como secreto de GitHub Actions. La keystore no debe versionarse en el repositorio.
 
 ## English
 
@@ -73,7 +73,7 @@ Current target:
 - Linux `x86_64`: complete `.zip` bundle
 - Linux `ARM64`: complete `.zip` bundle
 - Windows `x86_64`: complete `.zip` bundle
-- Android `arm64-v8a`: unsigned `.apk`
+- Android `arm64-v8a`: `.apk` signed from GitHub Actions secrets
 - source archive
 - `manifest.json`
 - `checksums.txt`
@@ -89,7 +89,7 @@ Current target:
 - `Linux/X11`, `Linux ARM64`, `Windows Desktop`, and `Android` presets exist
 - no secrets are stored in the repo
 - export templates are prepared through `scripts/release/install-templates`
-- Android requires a working SDK in CI
+- Android requires a working SDK in CI and configured signing secrets
 
 ### Flow
 
@@ -110,4 +110,4 @@ If `refresh_release_index=false`, the pipeline reuses the committed `site/data/r
 
 CI validation uses editor `recovery-mode`, but the real export uses `godot --headless --export-release` to preserve the real project runtime during packaging.
 Supported desktop deliverables are the complete `.zip` bundles. Standalone binaries are not published because the runtime needs native `orchestrator` sidecars in the same directory.
-The Android APK in this phase is published unsigned so releases do not depend on a keystore that is not yet formalized.
+The Android APK is signed with an alpha keystore stored as a GitHub Actions secret. The keystore must not be committed to the repository.

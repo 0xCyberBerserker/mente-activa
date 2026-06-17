@@ -61,6 +61,24 @@ fi
 test -f "$output_path"
 
 if [[ "$platform" == "android" ]]; then
+  require_commands apksigner zipalign
+  : "${ANDROID_SIGNING_KEYSTORE:?missing Android signing keystore path}"
+  : "${ANDROID_SIGNING_KEYSTORE_PASSWORD:?missing Android signing keystore password}"
+  : "${ANDROID_SIGNING_KEY_ALIAS:?missing Android signing key alias}"
+  : "${ANDROID_SIGNING_KEY_PASSWORD:?missing Android signing key password}"
+
+  unsigned_path="${output_path%.apk}-unsigned.apk"
+  aligned_path="${output_path%.apk}-aligned.apk"
+  mv "$output_path" "$unsigned_path"
+  zipalign -p -f 4 "$unsigned_path" "$aligned_path"
+  apksigner sign \
+    --ks "$ANDROID_SIGNING_KEYSTORE" \
+    --ks-pass env:ANDROID_SIGNING_KEYSTORE_PASSWORD \
+    --ks-key-alias "$ANDROID_SIGNING_KEY_ALIAS" \
+    --key-pass env:ANDROID_SIGNING_KEY_PASSWORD \
+    --out "$output_path" \
+    "$aligned_path"
+  apksigner verify --verbose "$output_path" >/dev/null
   cp "$output_path" "$assets_dir/"
   printf '%s\n' "$assets_dir"
   exit 0

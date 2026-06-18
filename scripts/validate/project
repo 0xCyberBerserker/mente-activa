@@ -20,7 +20,7 @@ if grep -RInE '^(<<<<<<<|=======|>>>>>>>)' \
   exit 1
 fi
 
-if git ls-files | grep -E '^(scene/|script/|Escena/|addons/(kanban_tasks|script-ide|discord_social_sdk)/|ejecutar/|kanban_tasks_data\.kanban$)' >/dev/null; then
+if git ls-files | grep -E '^(scene/|script/|Escena/|addons/(kanban_tasks|script-ide|discord_social_sdk)/|build/|dist/|ejecutar/|kanban_tasks_data\.kanban$|.*\.(apk|exe|pck|zip|sha256)$)' >/dev/null; then
   echo "legacy paths, editor-only addons, or generated artifacts are tracked" >&2
   exit 1
 fi

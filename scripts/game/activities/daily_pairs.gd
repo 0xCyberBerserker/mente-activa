@@ -1,13 +1,9 @@
 extends Control
 
-<<<<<<< HEAD:script/match_day_and_day.gd
-const MENU_SCENE_PATH := "res://scene/EscenalistaMinijuego.tscn"
-=======
 const AppRoutes = preload("res://scripts/game/shared/app_routes.gd")
 const AppText = preload("res://scripts/game/shared/app_text.gd")
 const ActivityData = preload("res://scripts/game/shared/activity_data.gd")
 
->>>>>>> 65bf5b792163f8266e0731f68c120d3dc97a67d0:scripts/game/activities/daily_pairs.gd
 const BACK_CARD_TEXT := "?"
 const PAIRS_PER_GAME := 6
 

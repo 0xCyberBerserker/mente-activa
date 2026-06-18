@@ -29,6 +29,7 @@ markdown_output = Path(sys.argv[4])
 json_output = Path(sys.argv[5])
 markdown_data_output = Path(sys.argv[6])
 version_data = json.loads((repo_root / "VERSION.json").read_text())
+current_version = version_data["version"]
 base_name = version_data["artifactBaseName"]
 display_name = version_data["displayName"]
 
@@ -53,6 +54,8 @@ for release in json.loads(releases_path.read_text()):
         continue
     tag = release["tag_name"]
     release_version = tag[1:] if tag.startswith("v") else tag
+    if release_version != current_version:
+        continue
     entry = {
         "version": release_version,
         "tag": tag,
@@ -106,7 +109,7 @@ markdown_lines = [
     "",
     "## Español",
     "",
-    "Tabla generada automáticamente desde GitHub Releases.",
+    f"Tabla generada automáticamente desde GitHub Releases para la versión actual `{current_version}`.",
     "",
     "| Versión | Canal | Sistema | Arquitectura | Artefacto | Descarga | SHA256 |",
     "| --- | --- | --- | --- | --- | --- | --- |",
@@ -121,7 +124,7 @@ markdown_lines.extend([
     "",
     "## English",
     "",
-    "Automatically generated table sourced from GitHub Releases.",
+    f"Automatically generated table sourced from GitHub Releases for the current `{current_version}` version.",
     "",
     "| Version | Channel | OS | Architecture | Artifact | Download | SHA256 |",
     "| --- | --- | --- | --- | --- | --- | --- |",

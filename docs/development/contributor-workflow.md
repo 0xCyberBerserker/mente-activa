@@ -36,6 +36,7 @@ No uses `rtk`: es una herramienta local de Linux y no existe en Windows. Para ej
 - Release/CI: `scripts/release/`, `scripts/validate/` y `.github/workflows/`.
 - Web pública: `site/`.
 - Dependencia vendorizada permitida: `addons/orchestrator/`.
+- Cualquier addon nuevo o actualización de addon debe pasar antes una auditoría de seguridad manual aprobada por el owner del proyecto.
 
 ### No hagas esto
 
@@ -43,6 +44,7 @@ No uses `rtk`: es una herramienta local de Linux y no existe en Windows. Para ej
 - No subas `build/`, `dist/`, `ejecutar/`, `.godot/`, `.agents/` ni `.codex/`.
 - No subas exports: `*.apk`, `*.exe`, `*.pck`, `*.zip`, `*.sha256`.
 - No añadas addons personales de editor en `addons/`.
+- No integres addons nuevos ni actualices `addons/orchestrator/` sin auditoría de seguridad previa aprobada.
 - No metas claves, keystores, `.env`, certificados ni contraseñas.
 - No hagas `git push --force`.
 - No hagas merge si `git pull --ff-only` falla.
@@ -144,6 +146,7 @@ Si ya hiciste commit con basura, no empujes. Avisa y espera revisión.
 - No hay rutas legacy `scene/`, `script/` o `Escena/`.
 - No hay exports ni builds trackeados.
 - No hay secretos ni ficheros de firma.
+- No hay addons nuevos o actualizados sin auditoría de seguridad aprobada.
 - La estructura documentada en `docs/development/project-structure.md` sigue vigente.
 
 ## English
@@ -182,6 +185,7 @@ Do not use `rtk`: it is a local Linux tool and does not exist on Windows. To run
 - Release/CI: `scripts/release/`, `scripts/validate/`, and `.github/workflows/`.
 - Public web page: `site/`.
 - Allowed vendored dependency: `addons/orchestrator/`.
+- Any new addon or addon update must first pass a manual security audit approved by the project owner.
 
 ### Do not do this
 
@@ -189,6 +193,7 @@ Do not use `rtk`: it is a local Linux tool and does not exist on Windows. To run
 - Do not commit `build/`, `dist/`, `ejecutar/`, `.godot/`, `.agents/`, or `.codex/`.
 - Do not commit exports: `*.apk`, `*.exe`, `*.pck`, `*.zip`, `*.sha256`.
 - Do not add personal editor addons under `addons/`.
+- Do not integrate new addons or update `addons/orchestrator/` without a prior approved security audit.
 - Do not commit keys, keystores, `.env` files, certificates, or passwords.
 - Do not run `git push --force`.
 - Do not merge if `git pull --ff-only` fails.
@@ -290,4 +295,5 @@ If you already committed junk, do not push. Ask for review first.
 - There are no legacy `scene/`, `script/`, or `Escena/` paths.
 - No exports or builds are tracked.
 - No secrets or signing files are tracked.
+- No new or updated addons are present without an approved security audit.
 - The structure documented in `docs/development/project-structure.md` still holds.

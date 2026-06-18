@@ -38,6 +38,7 @@ Esta es la estructura operativa actual del proyecto tras la normalización de ru
 - El texto visible común sale de `scripts/game/shared/app_text.gd`.
 - El contenido de actividades debe vivir en `data/activities/` siempre que sea viable.
 - `build/` y `dist/` son outputs temporales o publicables, no fuente.
+- Todo addon nuevo o actualización de addon requiere auditoría de seguridad manual previa y aprobación explícita del owner antes de integrarse.
 
 ## English
 
@@ -77,3 +78,4 @@ This is the current operational layout after normalizing the Godot project paths
 - Shared visible copy should come from `scripts/game/shared/app_text.gd`.
 - Activity content should live in `data/activities/` whenever practical.
 - `build/` and `dist/` are temporary or publishable outputs, not source.
+- Every new addon or addon update requires a prior manual security audit and explicit owner approval before integration.

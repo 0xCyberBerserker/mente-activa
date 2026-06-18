@@ -7,6 +7,7 @@
 - Su licencia upstream y avisos propios se conservan dentro de `addons/orchestrator/`.
 - Este repositorio no relicencia ese addon bajo la licencia principal de `Mente Activa`.
 - Cualquier actualización del addon debe revisar:
+  - auditoría de seguridad manual previa aprobada por el owner del proyecto
   - integridad de binarios
   - compatibilidad con Godot `4.6.x`
   - impacto en export `Linux`, `Windows` y `Android`
@@ -20,6 +21,7 @@
 - Upstream licensing and notices remain preserved inside `addons/orchestrator/`.
 - This repository does not relicense that addon under the main `Mente Activa` license.
 - Any addon update must review:
+  - prior manual security audit approved by the project owner
   - binary integrity
   - Godot `4.6.x` compatibility
   - `Linux`, `Windows`, and `Android` export impact

@@ -23,6 +23,10 @@ git status
 
 Si `git status` muestra archivos modificados que no entiendes, para y pregunta antes de seguir.
 
+### Nota para Windows
+
+No uses `rtk`: es una herramienta local de Linux y no existe en Windows. Para ejecutar los scripts del repo en Windows, abre **Git Bash** desde la raíz del repositorio. Si no tienes `godot`, `jq` o `python3` en el `PATH`, no hagas push directo: sube una rama y deja que GitHub Actions valide.
+
 ### Estructura que debes respetar
 
 - Escenas: `scenes/menus/` y `scenes/activities/`.
@@ -63,7 +67,7 @@ git diff
 3. Valida el proyecto:
 
 ```bash
-rtk scripts/validate/project
+bash scripts/validate/project
 ```
 
 4. Comprueba que no estás subiendo basura:
@@ -97,7 +101,7 @@ Sólo para cambios pequeños y consensuados:
 ```bash
 git checkout main
 git pull --ff-only origin main
-rtk scripts/validate/project
+bash scripts/validate/project
 git status
 git add rutas/que/has/tocado
 git commit -m "Describe el cambio"
@@ -136,7 +140,7 @@ Si ya hiciste commit con basura, no empujes. Avisa y espera revisión.
 ### Checklist antes de push
 
 - `git status` sólo muestra cambios esperados.
-- `rtk scripts/validate/project` pasa.
+- `bash scripts/validate/project` pasa en Git Bash o GitHub Actions valida la rama.
 - No hay rutas legacy `scene/`, `script/` o `Escena/`.
 - No hay exports ni builds trackeados.
 - No hay secretos ni ficheros de firma.
@@ -164,6 +168,10 @@ git status
 ```
 
 If `git status` shows modified files you do not understand, stop and ask before continuing.
+
+### Windows Note
+
+Do not use `rtk`: it is a local Linux tool and does not exist on Windows. To run repository scripts on Windows, open **Git Bash** from the repository root. If `godot`, `jq`, or `python3` are not available in `PATH`, do not push directly to `main`: push a branch and let GitHub Actions validate it.
 
 ### Structure to preserve
 
@@ -205,7 +213,7 @@ git diff
 3. Validate the project:
 
 ```bash
-rtk scripts/validate/project
+bash scripts/validate/project
 ```
 
 4. Check that no junk is tracked:
@@ -239,7 +247,7 @@ Only for small agreed changes:
 ```bash
 git checkout main
 git pull --ff-only origin main
-rtk scripts/validate/project
+bash scripts/validate/project
 git status
 git add paths/you/changed
 git commit -m "Describe the change"
@@ -278,7 +286,7 @@ If you already committed junk, do not push. Ask for review first.
 ### Pre-push checklist
 
 - `git status` shows only expected changes.
-- `rtk scripts/validate/project` passes.
+- `bash scripts/validate/project` passes in Git Bash or GitHub Actions validates the branch.
 - There are no legacy `scene/`, `script/`, or `Escena/` paths.
 - No exports or builds are tracked.
 - No secrets or signing files are tracked.

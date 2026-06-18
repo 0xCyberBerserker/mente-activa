@@ -3,6 +3,23 @@
 .import/
 /android/
 
+# Local agent/tool state
+.agents/
+.codex/
+
+# Local config and secrets
+.env
+.env.*
+!.env.example
+local.properties
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+*.idsig
+*.log
+
 # --- Build and release outputs ---
 build/
 bin/
@@ -18,3 +35,11 @@ ejecutar/
 *.arm64
 *.zip
 *.sha256
+
+# Vendored Orchestrator extension binaries are source dependencies for this project.
+!addons/orchestrator/**/*.dll
+!addons/orchestrator/**/*.dylib
+!addons/orchestrator/**/*.exp
+!addons/orchestrator/**/*.lib
+!addons/orchestrator/**/*.so
+!addons/orchestrator/**/*.wasm

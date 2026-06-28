@@ -4,13 +4,13 @@
 
 Mente Activa is a Godot 4 application with a small source tree and manual release pipeline.
 
-```mermaid
-flowchart LR
-    data["Activity data"] --> scenes["Godot activity scenes"]
-    scenes --> menus["Menu navigation"]
-    menus --> export["Manual Godot exports"]
-    export --> release["GitHub Releases"]
-    release --> site["GitHub Pages index"]
+```text
+Activity data
+  -> Godot activity scenes
+  -> Menu navigation
+  -> Manual Godot exports
+  -> GitHub Releases
+  -> GitHub Pages index
 ```
 
 ## Main Areas

@@ -38,6 +38,10 @@ No es un producto médico, no es una herramienta diagnóstica y no debe presenta
 - Proceso de release: [docs/release/process.md](./docs/release/process.md)
 - Tabla de versiones: [docs/release/releases.md](./docs/release/releases.md)
 - Índice documental: [docs/README.md](./docs/README.md)
+- Registro de cambios: [CHANGELOG.md](./CHANGELOG.md)
+- Manual de usuario: [manual_usuario.md](./manual_usuario.md)
+- Arquitectura: [arquitectura.md](./arquitectura.md)
+- Roadmap: [roadmap.md](./roadmap.md)
 - Seguridad: [SECURITY.md](./SECURITY.md)
 
 ### Licencia
@@ -88,6 +92,10 @@ It is not a medical product, not a diagnostic tool, and it must not be presented
 - Release process: [docs/release/process.md](./docs/release/process.md)
 - Version table: [docs/release/releases.md](./docs/release/releases.md)
 - Documentation index: [docs/README.md](./docs/README.md)
+- Changelog: [CHANGELOG.md](./CHANGELOG.md)
+- User manual: [manual_usuario.md](./manual_usuario.md)
+- Architecture: [arquitectura.md](./arquitectura.md)
+- Roadmap: [roadmap.md](./roadmap.md)
 - Security: [SECURITY.md](./SECURITY.md)
 
 ### License
